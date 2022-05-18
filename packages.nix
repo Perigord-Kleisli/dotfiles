@@ -37,6 +37,10 @@ lib.lists.flatten [
     bottles
     steam-run
 
+    pavucontrol 
+    helvum
+    qjackctl
+
     lxappearance # System theme setter/previewer
     kdeconnect # Connect with other devices
 
@@ -54,6 +58,7 @@ lib.lists.flatten [
       killall
       unzip
       zoxide # smart cd
+      hyperfine #benchmarking tool
       usbutils
     ]
   ]
@@ -128,6 +133,12 @@ lib.lists.flatten [
       rustfmt
       rust-analyzer
       rls
+    ]
+
+    #JS
+    [
+      nodejs
+      pkgsUnstable.node2nix
     ]
 
     #Python
