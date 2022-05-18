@@ -42,8 +42,8 @@
 
       WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
-      bindkey "^[[A" history-beginning-search-backward
-      bindkey "^[[B" history-beginning-search-forward
+      bindkey "^[0A" history-beginning-search-backward
+      bindkey "^[0B" history-beginning-search-forward
 
       export PATH=$PATH:$HOME/.local/bin/:$HOME/.ghcup/bin/
       eval "$(zoxide init zsh)"
