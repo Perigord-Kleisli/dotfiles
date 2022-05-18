@@ -15,7 +15,8 @@ let
   onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
   minimal = true;
 
-  pkgsUnstable = import <nixos-unstable> { };
+  pkgsUnstable =
+    (if onNixos then import <nixos-unstable> { } else import <unstable> { });
 
   userName = builtins.getEnv "USER";
   homeDir = builtins.getEnv "HOME";
@@ -106,7 +107,7 @@ in {
     dropbox.enable = true;
     flameshot = {
       enable = true;
-      package = pkgsUnstable.flameshot; 
+      package = pkgsUnstable.flameshot;
     };
   };
 
