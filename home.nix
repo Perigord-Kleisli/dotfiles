@@ -35,9 +35,11 @@ in {
     username = userName;
     homeDirectory = homeDir;
 
-    file.".xprofile".text = ''
-      systemctl start --user polybar.service & kitty &
-    '';
+    file = 
+      (if minimal 
+        then {".xprofile".text = "systemctl start --user polybar.service & kitty &"; }
+        else {}
+      );
 
     shellAliases = {
 
