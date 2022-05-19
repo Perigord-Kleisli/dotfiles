@@ -52,6 +52,7 @@ lib.lists.flatten [
       libtool
       btop # task manager
       fzf # fuzzy finder
+      fd
       trash-cli # rm with recyle bin
       yt-dlp # yt
       lazygit # tui git
@@ -109,6 +110,7 @@ lib.lists.flatten [
     [
       gnumake
       cmake
+      cmake-format
       cppcheck
       clang-tools
     ]
@@ -118,6 +120,7 @@ lib.lists.flatten [
       brittany
       cabal2nix
       cabal-install
+      cabal-fmt
       ghc
       hlint
       haskell-language-server
@@ -145,6 +148,7 @@ lib.lists.flatten [
     [
       python
       python3
+      #(Errors on non-Nixos distros) python-language-server
       python39Packages.pylint
     ]
 
@@ -160,13 +164,20 @@ lib.lists.flatten [
     #Lua
     [
       sumneko-lua-language-server
-      # lua
       luajit
+      stylua
     ]
 
     #Others
     [
       shellcheck # for shell languages
+
+      tree-sitter
+
+      sbcl # Steel Bank common lisp
+      lispPackages.quicklisp # Common lisp package manager
+
+      asmfmt
 
       texlive.combined.scheme-full # latex
     ]
@@ -175,6 +186,7 @@ lib.lists.flatten [
   #Writting
   [
     ispell
+    nodePackages.markdownlint-cli2
     nodePackages.write-good
     libreoffice
   ]

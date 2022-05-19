@@ -10,7 +10,7 @@ let
       parsedFile = map (x: n: (elemAt (strings.splitString "=" x) n)) file;
       osInfo = head (filter (x: x 0 == "NAME") parsedFile);
 
-    in osInfo 0;
+    in osInfo 1;
 
   onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
   isMinimal = false; # TODO add dynamic way to check for minimality
@@ -36,6 +36,11 @@ in {
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
     username = userName;
     homeDirectory = homeDir;
+
+    file = (if isMinimal then {
+      ".xprofile".text = "systemctl start --user polybar.service & kitty &";
+    } else
+      { });
 
     shellAliases = {
 
