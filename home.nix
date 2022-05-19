@@ -13,7 +13,7 @@ let
     in osInfo 0;
 
   onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
-  minimal = true;
+  isMinimal = false; # TODO add dynamic way to check for minimality
 
   pkgsUnstable =
     (if onNixos then import <nixos-unstable> { } else import <unstable> { });
@@ -25,19 +25,17 @@ in {
   programs.home-manager.enable = true;
   nixpkgs.overlays = [ ];
 
-  imports = (import ./programs) ++ (import ./services) ++ (import ./share);
+  imports = (import ./programs { inherit onNixos isMinimal; })
+    ++ (import ./services { inherit onNixos isMinimal; }) ++ (import ./share);
+
   targets.genericLinux.enable = !onNixos;
 
   home = {
     stateVersion = "21.11";
     packages =
-      pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable minimal; };
+      pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
     username = userName;
     homeDirectory = homeDir;
-
-    file.".xprofile".text = ''
-      systemctl start --user polybar.service & kitty &
-    '';
 
     shellAliases = {
 
@@ -103,17 +101,17 @@ in {
   };
 
   services = {
-    emacs.enable = true;
-    dropbox.enable = true;
+    dropbox.enable = onNixos;
     flameshot = {
-      enable = true;
+      enable = isMinimal;
       package = pkgsUnstable.flameshot;
     };
   };
 
   fonts.fontconfig.enable = true;
 
-  systemd.user.services.polybar = { Unit.After = [ "picom.service" ]; };
+  systemd.user.services =
+    (if isMinimal then { polybar.Unit.After = [ "picom.service" ]; } else { });
 
   xdg = { enable = true; };
   qt = {
