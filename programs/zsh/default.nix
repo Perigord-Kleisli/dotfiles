@@ -39,11 +39,11 @@
       bindkey -e
       bindkey ";5D" backward-word
       bindkey ";5C" forward-word
+      bindkey "OA" history-beginning-search-backward
+      bindkey "OB" history-beginning-search-forward
 
       WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
-      bindkey "^[0A" history-beginning-search-backward
-      bindkey "^[0B" history-beginning-search-forward
 
       export PATH=$PATH:$HOME/.local/bin/:$HOME/.ghcup/bin/
       eval "$(zoxide init zsh)"

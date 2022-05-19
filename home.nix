@@ -10,7 +10,7 @@ let
       parsedFile = map (x: n: (elemAt (strings.splitString "=" x) n)) file;
       osInfo = head (filter (x: x 0 == "NAME") parsedFile);
 
-    in osInfo 0;
+    in osInfo 1;
 
   onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
   minimal = true;

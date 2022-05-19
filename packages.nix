@@ -145,7 +145,7 @@ lib.lists.flatten [
     [
       python
       python3
-      python-language-server
+      #(Errorss on non-Nixos distros) python-language-server
       python39Packages.pylint
     ]
 
@@ -161,13 +161,15 @@ lib.lists.flatten [
     #Lua
     [
       sumneko-lua-language-server
-      # lua
       luajit
     ]
 
     #Others
     [
       shellcheck # for shell languages
+
+      sbcl # Steel Bank common lisp
+      lispPackages.quicklisp # Common lisp package manager
 
       texlive.combined.scheme-full # latex
     ]
