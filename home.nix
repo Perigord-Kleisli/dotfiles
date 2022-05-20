@@ -13,7 +13,7 @@ let
     in osInfo 1;
 
   onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
-  isMinimal = false; # TODO add dynamic way to check for minimality
+  isMinimal = builtins.pathExists ./.minimal; # On minimal mode when a .minimal file exists
 
   pkgsUnstable =
     (if onNixos then import <nixos-unstable> { } else import <unstable> { });
@@ -34,8 +34,6 @@ in {
     stateVersion = "21.11";
     packages =
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
-    username = userName;
-    homeDirectory = homeDir;
 
     file = (if isMinimal then {
       ".xprofile".text = "systemctl start --user polybar.service & kitty &";
@@ -70,6 +68,8 @@ in {
       emacs = "emacsclient -c";
 
     };
+
+    sessionVariables = { NEOVIDE_MULTIGRID = "1"; };
   };
 
   programs = {
