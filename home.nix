@@ -106,9 +106,12 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+
+    emacs.enable = onNixos;
   };
 
   services = {
+    emacs.enable = onNixos;
     dropbox.enable = onNixos;
     flameshot = {
       enable = isMinimal;
