@@ -167,7 +167,7 @@ lib.lists.flatten [
     [
       sumneko-lua-language-server
       luajit
-      luacheck
+      luajitPackages.luacheck
       stylua
 
       fennel
