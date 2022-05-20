@@ -31,6 +31,9 @@ in {
   targets.genericLinux.enable = !onNixos;
 
   home = {
+    username = userName;
+    homeDirectory = homeDir;
+
     stateVersion = "21.11";
     packages =
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
