@@ -166,6 +166,9 @@ lib.lists.flatten [
       sumneko-lua-language-server
       luajit
       stylua
+
+      fennel
+      fnlfmt
     ]
 
     #Others

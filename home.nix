@@ -35,11 +35,10 @@ in {
     username = userName;
     homeDirectory = homeDir;
 
-    file = 
-      (if minimal 
-        then {".xprofile".text = "systemctl start --user polybar.service & kitty &"; }
-        else {}
-      );
+    file = (if minimal then {
+      ".xprofile".text = "systemctl start --user polybar.service & kitty &";
+    } else
+      { });
 
     shellAliases = {
 
@@ -115,7 +114,8 @@ in {
 
   fonts.fontconfig.enable = true;
 
-  systemd.user.services.polybar = { Unit.After = [ "picom.service" ]; };
+  systemd.user.services =
+    (if minimal then { polybar.Unit.After = [ "picom.service" ]; } else { });
 
   xdg = { enable = true; };
   qt = {
