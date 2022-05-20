@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, minimal }:
+{ pkgs, pkgsUnstable, isMinimal }:
 with pkgs;
 lib.lists.flatten [
 
@@ -148,7 +148,7 @@ lib.lists.flatten [
     [
       python
       python3
-      #(Errorss on non-Nixos distros) python-language-server
+      #(Errors on non-Nixos distros) python-language-server
       python39Packages.pylint
     ]
 
@@ -194,6 +194,4 @@ lib.lists.flatten [
     libreoffice
   ]
 
-  #Minimal (packages used when there's no DE)
-  (if minimal then [ picom dunst ] else [ ])
 ]
