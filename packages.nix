@@ -49,6 +49,7 @@ lib.lists.flatten [
     #Terminal Tools
     [
       appimage-run
+      asciinema
       xclip # x clipboard
       ripgrep # faster grep
       libtool
