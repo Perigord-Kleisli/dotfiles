@@ -44,6 +44,8 @@ lib.lists.flatten [
     lxappearance # System theme setter/previewer
     kdeconnect # Connect with other devices
 
+    virtualbox #VM
+
     #Terminal Tools
     [
       appimage-run
@@ -165,6 +167,7 @@ lib.lists.flatten [
     [
       sumneko-lua-language-server
       luajit
+      luacheck
       stylua
 
       fennel
