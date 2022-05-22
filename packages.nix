@@ -32,7 +32,9 @@ lib.lists.flatten [
   [
     qalculate-gtk
 
-    wine64
+    wine
+    proton-caller
+    pkgsUnstable.samba
     winetricks
     bottles
     steam-run
@@ -89,6 +91,7 @@ lib.lists.flatten [
   [
     steam
     pkgsUnstable.lutris
+    pkgsUnstable.rare
     pkgsUnstable.minecraft
     pkgsUnstable.optifine
     steam
