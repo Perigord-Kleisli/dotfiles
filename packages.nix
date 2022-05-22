@@ -119,6 +119,8 @@ lib.lists.flatten [
     ]
 
     #Haskell 
+
+    pkgsUnstable.haskell-language-server
     (with haskellPackages; [
       brittany
       cabal2nix
@@ -126,7 +128,6 @@ lib.lists.flatten [
       cabal-fmt
       ghc
       hlint
-      haskell-language-server
       implicit-hie
       hoogle
       nix-tree
