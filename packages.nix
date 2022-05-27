@@ -162,6 +162,7 @@ lib.lists.flatten [
       nixfmt
       rnix-lsp
       nix-prefetch-git
+      statix
       niv
       lorri
     ]
@@ -171,6 +172,7 @@ lib.lists.flatten [
       sumneko-lua-language-server
       luajit
       luajitPackages.luacheck
+      luajitPackages.luarocks
       stylua
 
       fennel
