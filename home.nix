@@ -38,10 +38,14 @@ in {
     packages =
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
 
+
     file = (if isMinimal then {
       ".xprofile".text = "systemctl start --user polybar.service & kitty &";
+      ".local/share/words".source = builtins.fetchurl "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
     } else
-      { });
+      {
+      ".local/share/words".source = builtins.fetchurl "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
+        });
 
     shellAliases = {
 
@@ -76,6 +80,7 @@ in {
   };
 
   programs = {
+    go.enable = true;
     exa.enable = true;
     gh.enable = true;
     obs-studio.enable = true;

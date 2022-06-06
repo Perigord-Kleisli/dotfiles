@@ -38,6 +38,7 @@ lib.lists.flatten [
     winetricks
     bottles
     steam-run
+    dict
 
     pavucontrol 
     helvum
@@ -53,6 +54,10 @@ lib.lists.flatten [
       xclip # x clipboard
       ripgrep # faster grep
       libtool
+
+      pandoc
+      nodePackages.live-server
+
       btop # task manager
       fzf # fuzzy finder
       fd
@@ -132,6 +137,10 @@ lib.lists.flatten [
       implicit-hie
       hoogle
       nix-tree
+      haskell-dap
+      ghci-dap
+      haskell-debug-adapter
+      stack
     ])
 
     #Rust
