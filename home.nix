@@ -118,6 +118,7 @@ in {
   services = {
     emacs.enable = onNixos;
     dropbox.enable = onNixos;
+    lorri.enable = true;
     flameshot = {
       enable = isMinimal;
       package = pkgsUnstable.flameshot;

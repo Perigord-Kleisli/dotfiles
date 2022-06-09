@@ -32,7 +32,7 @@ lib.lists.flatten [
   [
     qalculate-gtk
 
-    wine
+    wine64
     proton-caller
     pkgsUnstable.samba
     winetricks
@@ -114,6 +114,7 @@ lib.lists.flatten [
   [
     pkgsUnstable.neovim
     neovide
+    vscode
 
     #C/C++
     [
@@ -122,6 +123,7 @@ lib.lists.flatten [
       cmake-format
       cppcheck
       clang-tools
+      lldb
     ]
 
     #Haskell 
