@@ -18,12 +18,10 @@ if [ ! -x "$(command -v nix-env)" ]; then
         read -r input
         case "$input" in
           1)
-            # shellcheck disable=3001
             sh <(curl -L https://nixos.org/nix/install) --daemon
             menu=1
             ;;
           2)
-            # shellcheck disable=3001
             sh <(curl -L https://nixos.org/nix/install) --no-daemon
             menu=1
             ;;
@@ -64,11 +62,11 @@ fi
 printf "\x1b[32mCloning Dotfile Repo...\x1b[0m\n"
 git clone "https://github.com/Trouble-Truffle/dotfiles.git" "$HOME/.config/nixpkgs"
 
-if [ $? ]; then
+if [ $? != 0 ]; then
   error "Failed to clone dotfiles repo, check error above and rerun the script"
   exit 1
 fi
-
+cd "$HOME/.config/nixpkgs"
 if uname -a | grep -qi nixos; then
   onNixos="true"
 else
