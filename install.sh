@@ -52,6 +52,11 @@ if [ ! -x "$(command -v home-manager)" ]; then
     [yY][eE][sS]|[yY])
       nix-env -iA nixpkgs.home-manager
       printf "\n\n\x1b[32mHome-Manager Installed\x1b[0m\n"
+      
+      if [ $? != 0 ]; then
+        error "Failed to install home-manager, check error above and rerun the script"
+        exit 1
+      fi
       ;;
     *)
       exit 1
