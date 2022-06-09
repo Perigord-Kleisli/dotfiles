@@ -53,12 +53,13 @@ if [ ! -x "$(command -v nix-env)" ]; then
       ;;
   esac
 fi
-
+printf "\n\n\x1b[32mNix Installed\xb[0m\n"
 printf "\x1b[32mCloning Dotfile Repo...\x1b[0m\n"
 git clone "https://github.com/Trouble-Truffle/dotfiles.git" "$HOME/.config/nixpkgs"
 
 if [ $? ]; then
-  error "Failed to clone dotfiles repo, check error above"
+  error "Failed to clone dotfiles repo, check error above and rerun the script"
+  exit 1
 fi
 
 if uname -a | grep -qi nixos; then
@@ -83,6 +84,7 @@ boolSwap() {
     echo ""
   fi
 }
+
 printf "Create a Dotfile Profile? [Y/N]: "
 read -r input
 case "$input" in
