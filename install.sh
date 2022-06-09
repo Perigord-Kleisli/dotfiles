@@ -51,7 +51,7 @@ if [ ! -x "$(command -v home-manager)" ]; then
   case "$input" in
     [yY][eE][sS]|[yY])
       nix-env -iA nixpkgs.home-manager
-      printf "\n\n\x1b[32mHome-Manager Installed\xb[0m\n"
+      printf "\n\n\x1b[32mHome-Manager Installed\x1b[0m\n"
       ;;
     *)
       exit 1
