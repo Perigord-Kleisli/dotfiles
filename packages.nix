@@ -193,6 +193,7 @@ lib.lists.flatten [
     #Others
     [
       shellcheck # for shell languages
+      nodePackages.bash-language-server
 
       tree-sitter
 

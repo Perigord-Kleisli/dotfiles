@@ -1,16 +1,6 @@
 { pkgs, ... }:
 let
-  osName = with pkgs.lib;
-    with builtins;
-    let
-      file = (strings.split "\n" (strings.fileContents /etc/os-release));
-
-      parsedFile =
-        map (x: n: (elemAt (strings.splitString "=" x) n)) (lists.flatten file);
-
-    in (head (filter (x: x 0 == "NAME") parsedFile)) 0;
-
-  onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
+  onNixos = (pkgs.lib.trivial.importJSON ../profile.json).onNixos;
 in {
   xdg = {
     enable = true;

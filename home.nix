@@ -12,8 +12,8 @@ let
 
     in osInfo 1;
 
-  onNixos = (pkgs.lib.strings.toUpper osName) == "NIXOS";
-  isMinimal = builtins.pathExists ./.minimal; # On minimal mode when a .minimal file exists
+  onNixos = (pkgs.lib.trivial.importJSON ./profile.json).onNixos;
+  isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).isMinimal;
 
   pkgsUnstable =
     (if onNixos then import <nixos-unstable> { } else import <unstable> { });
