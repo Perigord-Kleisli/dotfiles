@@ -38,22 +38,28 @@ if [ ! -x "$(command -v nix-env)" ]; then
             ;;
         esac
       done
-
-      printf "Automatically Install home-manager? [Y/N/[M]anual]: "
-      read -r input
-      case "$input" in
-        [yY][eE][sS]|[yY])
-          nix-env -iA nixpkgs.home-manager
-          ;;
-        *)
-          ;;
-      esac
+      printf "\n\n\x1b[32mNix Installed\xb[0m\n"
+      echo "Please restart your terminal and rerun this script"
+      exit 0
       ;;
     *)
       ;;
   esac
 fi
-printf "\n\n\x1b[32mNix Installed\xb[0m\n"
+
+if [ ! -x "$(command -v home-manager)" ]; then
+  printf "Install home-manager? [Y/N]: "
+  read -r input
+  case "$input" in
+    [yY][eE][sS]|[yY])
+      nix-env -iA nixpkgs.home-manager
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+fi
+
 printf "\x1b[32mCloning Dotfile Repo...\x1b[0m\n"
 git clone "https://github.com/Trouble-Truffle/dotfiles.git" "$HOME/.config/nixpkgs"
 
