@@ -36,7 +36,7 @@ if [ ! -x "$(command -v nix-env)" ]; then
             ;;
         esac
       done
-      printf "\n\n\x1b[32mNix Installed\xb[0m\n"
+      printf "\n\n\x1b[32mNix Installed\x1b[0m\n"
       echo "Please restart your terminal and rerun this script"
       exit 0
       ;;
