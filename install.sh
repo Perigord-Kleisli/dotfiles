@@ -36,6 +36,10 @@ if [ ! -x "$(command -v nix-env)" ]; then
             ;;
         esac
       done
+      if [ $? != 0]; then
+        error "Failed to install Nix, check error above and rerun this script"
+	exit 1
+      fi
       printf "\n\n\x1b[32mNix Installed\x1b[0m\n"
       echo "Please restart your terminal and rerun this script"
       exit 0
