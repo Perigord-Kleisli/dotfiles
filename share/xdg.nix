@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  onNixos = (pkgs.lib.trivial.importJSON ../profile.json).onNixos;
+  onNixos = (pkgs.lib.trivial.importJSON ../profile.json).on_nixos;
 in {
   xdg = {
     enable = true;

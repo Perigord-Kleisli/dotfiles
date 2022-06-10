@@ -2,8 +2,8 @@
 
 let
 
-  onNixos = (pkgs.lib.trivial.importJSON ./profile.json).onNixos;
-  isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).isMinimal;
+  onNixos = (pkgs.lib.trivial.importJSON ./profile.json).on_nixos;
+  isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).is_minimal;
 
   pkgsUnstable =
     (if onNixos then import <nixos-unstable> { } else import <unstable> { });

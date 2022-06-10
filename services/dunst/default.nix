@@ -1,6 +1,6 @@
 {pkgs, ... }: {
   services.dunst = {
-    enable = (pkgs.lib.trivial.importJSON ../../profile.json).isMinimal;
+    enable = (pkgs.lib.trivial.importJSON ../../profile.json).is_minimal;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.gnome3.adwaita-icon-theme;

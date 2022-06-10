@@ -1,12 +1,13 @@
-{pkgs, ...}: {
+{pkgs, ...}: 
+{
   programs.git = {
     enable = true;
     extraConfig = {
       init.defaultBranch = "main";
     };
 
-    userName = "Trouble-Truffle";
-    userEmail = "perigordtruffle7318@gmail.com";
+    userName = (pkgs.lib.trivial.importJSON ../../profile.json).git_name;
+    userEmail = (pkgs.lib.trivial.importJSON ../../profile.json).git_email;
     ignores = [
      "*.hie.yaml"
     ];

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 error() {
   printf "\x1b[31mError: %s\x1b[0m\n" "$1"
 }
@@ -36,9 +36,9 @@ if [ ! -x "$(command -v nix-env)" ]; then
             ;;
         esac
       done
-      if [ $? != 0]; then
+      if [ $? != 0 ]; then
         error "Failed to install Nix, check error above and rerun this script"
-	exit 1
+    exit 1
       fi
       printf "\n\n\x1b[32mNix Installed\x1b[0m\n"
       echo "Please restart your terminal and rerun this script"
@@ -57,10 +57,9 @@ if [ ! -x "$(command -v home-manager)" ]; then
       nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
       nix-channel --update
       echo "export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}" > .bashrc
-      nix-shell '<home-manager>' -A install
-      printf "\n\n\x1b[32mHome-Manager Installed\x1b[0m\n"
       
-      if [ $? != 0 ]; then
+      printf "\n\n\x1b[32mHome-Manager Installed\x1b[0m\n"
+      if ! nix-shell '<home-manager>' -A install ; then
         error "Failed to install home-manager, check error above and rerun the script"
         exit 1
       fi
@@ -72,9 +71,9 @@ if [ ! -x "$(command -v home-manager)" ]; then
 fi
 
 printf "\x1b[32mCloning Dotfile Repo...\x1b[0m\n"
-git clone "https://github.com/Trouble-Truffle/dotfiles.git" "$HOME/.config/nixpkgs"
 
-if [ $? != 0 ]; then
+
+if ! git clone "https://github.com/Trouble-Truffle/dotfiles.git" "$HOME/.config/nixpkgs" ; then
   error "Failed to clone dotfiles repo, check error above and rerun the script"
   exit 1
 fi
@@ -84,62 +83,9 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
 nix-channel --update
 
 
-cd "$HOME/.config/nixpkgs"
-if uname -a | grep -qi nixos; then
-  onNixos="true"
-else
-  onNixos="false"
-fi
-isMinimal="true"
+cd "$HOME/.config/nixpkgs" || exit
 
-jsonConf() {
-  echo "{"
-  echo "  \"onNixos\": $1,"
-  echo "  \"isMinimal\": $2"
-  echo "}"
-}
-boolSwap() {
-  if [ "$1" = "true" ]; then
-    echo "yes"
-  elif [ "$1" = "false" ]; then
-    echo "no"
-  else
-    echo ""
-  fi
-}
-
-printf "Create a Dotfile Profile? [Y/N]: "
-read -r input
-case "$input" in
-  [yY][eE][sS]|[yY])
-
-    printf "On NixOS? (default: %s) [Y/N]: " "$(boolSwap "$onNixos")"
-    read -r onNixos
-    case "$onNixos" in
-      [yY][eE][sS]|[yY]) onNixos="true" ;;
-      [nN][oO]|[nN])     onNixos="false" ;;
-      *)                 ;;
-    esac
-
-    printf "Minimal Setup (no DE)? (default: %s) [Y/N]: " "$isMinimal"
-    read -r isMinimal 
-    case "$isMinimal" in
-      [yY][eE][sS]|[yY]) isMinimal="true";;
-      [nN][oO]|[nN])     isMinimal="false";;
-      *)                 ;;
-    esac
-
-    echo "Using profile:"
-    printf "\x1b[33m"
-    jsonConf "$onNixos" "$isMinimal"
-    printf "\x1b[0m"
-    jsonConf "$onNixos" "$isMinimal" > profile.json
-    ;;
-  *)
-    echo "Using default profile:"
-    jsonConf "$onNixos" "$isMinimal"
-    jsonConf "$onNixos" "$isMinimal" > profile.json
-    ;;
-esac
+echo "Setting up Profile: "
+bash jsonProfile.sh
 
 echo "Setup complete, run 'home-manager switch' to install dotfiles and programs."

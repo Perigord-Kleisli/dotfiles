@@ -2,5 +2,5 @@
 
 installation:
 ```
-$SHELL <(curl -L "https://raw.githubusercontent.com/Trouble-Truffle/dotfiles/main/install.sh")
+bash <(curl -L "https://raw.githubusercontent.com/Trouble-Truffle/dotfiles/main/install.sh")
 ```
