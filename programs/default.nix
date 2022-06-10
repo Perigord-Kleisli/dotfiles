@@ -1,4 +1,3 @@
-{isMinimal, ...}:
 [
   ./kitty
   ./rofi

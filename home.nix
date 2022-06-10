@@ -15,8 +15,9 @@ in {
   programs.home-manager.enable = true;
   nixpkgs.overlays = [ ];
 
-  imports = (import ./programs { inherit onNixos isMinimal; })
-  # ++ (import ./services { inherit onNixos isMinimal; }) ++ (import ./share);
+  imports = (import ./programs) 
+  	 ++ (import ./share);
+	 # ++ (import ./services {inherit isMinimal pkgs; });
 
   targets.genericLinux.enable = !onNixos;
 
@@ -121,12 +122,12 @@ in {
     (if isMinimal then { polybar.Unit.After = [ "picom.service" ]; } else { });
   xdg = { enable = true; };
   qt = {
-    enable = true;
+    enable = onNixos;
     platformTheme = "gtk";
   };
 
   gtk = {
-    enable = true;
+    enable = onNixos;
     theme = {
       name = "Sweet-Dark";
       package = pkgs.sweet;

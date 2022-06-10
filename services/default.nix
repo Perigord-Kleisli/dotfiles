@@ -1,9 +1,5 @@
-{isMinimal, ...}:
-if isMinimal then
-  [
-  ./picom
-  ./polybar
-  ./dunst
-  ]
-else
-  []
+[
+    ./picom
+    ./polybar
+    ./dunst
+]
