@@ -78,6 +78,12 @@ if [ $? != 0 ]; then
   error "Failed to clone dotfiles repo, check error above and rerun the script"
   exit 1
 fi
+
+printf "\x1b[32mInstalling unstable channel\x1b[0m\n"
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+nix-channel --update
+
+
 cd "$HOME/.config/nixpkgs"
 if uname -a | grep -qi nixos; then
   onNixos="true"

@@ -2,16 +2,6 @@
 
 let
 
-  osName = with pkgs.lib;
-    with builtins;
-    let
-      file = lists.flatten
-        (strings.split "\n" (strings.fileContents /etc/os-release));
-      parsedFile = map (x: n: (elemAt (strings.splitString "=" x) n)) file;
-      osInfo = head (filter (x: x 0 == "NAME") parsedFile);
-
-    in osInfo 1;
-
   onNixos = (pkgs.lib.trivial.importJSON ./profile.json).onNixos;
   isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).isMinimal;
 
@@ -26,7 +16,7 @@ in {
   nixpkgs.overlays = [ ];
 
   imports = (import ./programs { inherit onNixos isMinimal; })
-    ++ (import ./services { inherit onNixos isMinimal; }) ++ (import ./share);
+  # ++ (import ./services { inherit onNixos isMinimal; }) ++ (import ./share);
 
   targets.genericLinux.enable = !onNixos;
 
