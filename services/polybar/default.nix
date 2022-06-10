@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   services.polybar = {
-    enable = true;
+    enable = (pkgs.lib.trivial.importJSON ../../profile.json).isMinimal;
     script = "polybar example &";
     extraConfig = builtins.readFile ./polybarConf;
   };

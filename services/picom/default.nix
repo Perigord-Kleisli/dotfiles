@@ -1,6 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+let 
+in{
   services.picom = {
-    enable = true;
+    enable = (pkgs.lib.trivial.importJSON ../../profile.json).isMinimal;
     blur = true;
     fade = true;
     shadow = true;

@@ -16,8 +16,8 @@ in {
   nixpkgs.overlays = [ ];
 
   imports = (import ./programs) 
-  	 ++ (import ./share);
-	 # ++ (import ./services {inherit isMinimal pkgs; });
+  	 ++ (import ./share)
+	 ++ (import ./services);
 
   targets.genericLinux.enable = !onNixos;
 
