@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 error() {
   printf "\x1b[31mError: %s\x1b[0m\n" "$1"
