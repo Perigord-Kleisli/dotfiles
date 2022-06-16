@@ -5,7 +5,9 @@
       name = "JetBrainsMono Nerd Font";
       size = 11;
     };
+
     settings = {
+      tab_bar_style = "powerline";
       disable_ligatures = "cursor";
       background_opacity = "0.8";
 
@@ -33,7 +35,8 @@
       "kitty_mod+l" = "move_window_backward";
       "kitty_mod+`" = "move_window_to_top";
       "kitty_mod+r" = "start_resizing_window";
-
+      "kitty_mod+alt+l" = "next_tab";
+      "kitty_mod+alt+h" = "previous_tab";
     };
   };
 }

@@ -25,13 +25,13 @@ in {
     username = userName;
     homeDirectory = homeDir;
 
-    stateVersion = "21.11";
+    stateVersion = "22.05";
     packages =
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
 
 
     file = (if isMinimal then {
-      ".xprofile".text = "systemctl start --user polybar.service & kitty &";
+      # ".xprofile".text = "systemctl start --user polybar.service & kitty & nm-applet";
       ".local/share/words".source = builtins.fetchurl "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
     } else
       {
@@ -120,14 +120,15 @@ in {
 
   systemd.user.services =
     (if isMinimal then { polybar.Unit.After = [ "picom.service" ]; } else { });
+
   xdg = { enable = true; };
   qt = {
-    enable = onNixos;
+    enable = onNixos && isMinimal;
     platformTheme = "gtk";
   };
 
   gtk = {
-    enable = onNixos;
+    enable = onNixos && isMinimal;
     theme = {
       name = "Sweet-Dark";
       package = pkgs.sweet;

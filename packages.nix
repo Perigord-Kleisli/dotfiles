@@ -39,10 +39,14 @@ lib.lists.flatten [
     bottles
     steam-run
     dict
+    rlwrap
 
     pavucontrol 
     helvum
     qjackctl
+
+    dconf
+    networkmanagerapplet
 
     lxappearance # System theme setter/previewer
     kdeconnect # Connect with other devices
@@ -112,7 +116,7 @@ lib.lists.flatten [
 
   #Dev
   [
-    pkgsUnstable.neovim
+    neovim
     neovide
     vscode
 
@@ -192,6 +196,9 @@ lib.lists.flatten [
 
     #Others
     [
+      idris2
+      chez
+
       shellcheck # for shell languages
       nodePackages.bash-language-server
 
