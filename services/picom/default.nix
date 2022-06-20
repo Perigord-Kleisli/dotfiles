@@ -2,7 +2,7 @@
 let 
 in{
   services.picom = {
-    enable = (pkgs.lib.trivial.importJSON ../../profile.json).is_minimal;
+    enable = (pkgs.lib.trivial.importJSON ../../profile.json).no_de;
     blur = true;
     fade = true;
     shadow = true;

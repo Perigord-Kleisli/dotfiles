@@ -1,7 +1,7 @@
 { pkgs, ... }: 
 {
   programs.rofi = {
-    enable = true;
+    enable = (pkgs.lib.trivial.importJSON ../../profile.json).no_de;
     plugins = with pkgs; [ rofi-calc ];
     terminal = "${pkgs.kitty}/bin/kitty";
     font = "system-ui 14";

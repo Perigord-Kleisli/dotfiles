@@ -40,6 +40,7 @@ lib.lists.flatten [
     steam-run
     dict
     rlwrap
+    wl-clipboard
 
     pavucontrol 
     helvum
@@ -58,6 +59,7 @@ lib.lists.flatten [
       xclip # x clipboard
       ripgrep # faster grep
       libtool
+      jq
 
       pandoc
       nodePackages.live-server

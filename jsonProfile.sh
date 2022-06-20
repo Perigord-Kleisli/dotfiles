@@ -6,14 +6,18 @@ error() {
 
 prompt() {
   read -r -p "$1: (default: '${json_conf[$1]}'): " input
-  json_conf[$1]="\"$input\""
+  if [ -z "$input" ]; then
+    json_conf[$1]="${json_conf[$1]}"
+  else
+    json_conf[$1]="$input"
+  fi
 }
 
 yn_prompt() {
   menu=0
   while [ $menu == 0 ]; do
     read -n 1 -r -p "Enable '$1' (default: '${json_conf[$1]}') [Y/N/(D)efault]: " input
-    echo ""
+    echo "$2"
     case $input in
       [yY]) json_conf[$1]=true; menu=1;;
       [nN]) json_conf[$1]=false; menu=1;;
@@ -23,19 +27,51 @@ yn_prompt() {
   done
 }
 
-declare -A json_conf
-if uname -a | grep -qi nixos; 
-  then json_conf[on_nixos]=true
-  else json_conf[on_nixos]=false
-fi
-json_conf[is_minimal]=true
-json_conf[git_name]="Example-Name"
-json_conf[git_email]="ExampleName@email.com"
+function list_prompt() {
+  choices=("$@")
 
-yn_prompt "on_nixos"
-yn_prompt "is_minimal"
+  local menu=0
+  while [ $menu == 0 ]; do
+    for (( i=1; i<${#choices[@]}; i++)); do
+      echo "[$i] ${choices[$i]}"
+    done
+    echo ""
+
+    read -n 1 -r -p "$1 (default: '${json_conf[$1]}') [1-$((${#choices[@]}-1))|(D)efault]: " input
+    echo ""
+
+    if [[ "$input" == 'd' || "$input" == 'D' ]]; then
+      menu=1
+    elif [[ "$input" -lt 1 || "$input" -gt "$((${#choices[@]}-1))"  ]]; then
+      error "Invalid Input '$input', try again"
+      echo ""
+      sleep 0.6
+    else 
+      json_conf[$1]="\"${choices[$input]}\""
+      menu=1
+    fi
+  done
+}
+
+declare -A json_conf
+
+function default() {
+  if command -v jq &> /dev/null &&  [[ -f "./profile.json" ]] ; then
+    json_conf[$1]=$(jq ".$1" "profile.json")
+  else
+    $2
+  fi
+}
+default "no_de" true
+default "is_minimal" false
+default "git_name" "Example-Name"
+default "git_email" "ExampleEmail@email.com"
+default "display_protocol" "Wayland"
+
+yn_prompt "no_de" 
 prompt "git_name"
 prompt "git_email"
+list_prompt "display_protocol" "Wayland" "X11" "Headless"
 
 echo -n "" > profile.json
 echo "{" >> profile.json
