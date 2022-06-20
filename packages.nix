@@ -19,7 +19,7 @@ lib.lists.flatten [
     [
       blender # 3d Modelling
       inkscape # SVG
-      #(unable to be built) pkgsUnstable.krita # Digital painting
+      pkgsUnstable.krita 
 
       kdenlive # video editor
       #(unable to run on intel hd) pkgsUnstable.davinci-resolve # video editor
