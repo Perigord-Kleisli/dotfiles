@@ -84,7 +84,7 @@
 (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
 (add-to-list 'default-frame-alist '(alpha . (95 . 90)))
 
-(require 'gnu-apl-mode)
+;(require 'gnu-apl-mode)
 (require 'company)
 (setq company-idle-delay 0.5
       company-minimum-prefix-length 2)
@@ -102,80 +102,98 @@
 (require 'org-superstar)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
+(setq org-latex-compiler "xelatex")
+(setq org-latex-pdf-process
+      (list (concat "latexmk -"
+                    org-latex-compiler 
+                    " -recorder -synctex=1 -bibtex-cond %b")))
+(setq org-latex-listings t)
+(setq org-latex-default-packages-alist
+      '(("" "graphicx" t)
+        ("" "grffile" t)
+        ("" "longtable" nil)
+        ("" "wrapfig" nil)
+        ("" "rotating" nil)
+        ("normalem" "ulem" t)
+        ("" "amsmath" t)
+        ("" "textcomp" t)
+        ("" "amssymb" t)
+        ("" "capt-of" nil)
+        ("" "hyperref" nil)))
+
+
 (setq org-latex-classes
-        '(("article"
-        "\\RequirePackage{fix-cm}
+    '(("article"
+       "\\RequirePackage{fix-cm}
         \\PassOptionsToPackage{svgnames}{xcolor}
         \\documentclass[11pt]{article}
         \\usepackage{fontspec}
-        \\setmainfont{ETBembo-RomanOSF}
-        \\setsansfont[Scale=MatchLowercase]{Raleway}
-        \\setmonofont[Scale=MatchLowercase]{Operator Mono SSm}
+        \\setmainfont{ETBembo}
         \\usepackage{sectsty}
         \\allsectionsfont{\\sffamily}
         \\usepackage{enumitem}
         \\setlist[description]{style=unboxed,font=\\sffamily\\bfseries}
         \\usepackage{listings}
         \\lstset{frame=single,aboveskip=1em,
-                framesep=.5em,backgroundcolor=\\color{AliceBlue},
-                rulecolor=\\color{LightSteelBlue},framerule=1pt}
+          framesep=.5em,backgroundcolor=\\color{AliceBlue},
+          rulecolor=\\color{LightSteelBlue},framerule=1pt}
         \\usepackage{xcolor}
         \\newcommand\\basicdefault[1]{\\scriptsize\\color{Black}\\ttfamily#1}
         \\lstset{basicstyle=\\basicdefault{\\spaceskip1em}}
         \\lstset{literate=
-                {§}{{\\S}}1
-                {©}{{\\raisebox{.125ex}{\\copyright}\\enspace}}1
-                {«}{{\\guillemotleft}}1
-                {»}{{\\guillemotright}}1
-                {Á}{{\\'A}}1
-                {Ä}{{\\\"A}}1
-                {É}{{\\'E}}1
-                {Í}{{\\'I}}1
-                {Ó}{{\\'O}}1
-                {Ö}{{\\\"O}}1
-                {Ú}{{\\'U}}1
-                {Ü}{{\\\"U}}1
-                {ß}{{\\ss}}2
-                {à}{{\\`a}}1
-                {á}{{\\'a}}1
-                {ä}{{\\\"a}}1
-                {é}{{\\'e}}1
-                {í}{{\\'i}}1
-                {ó}{{\\'o}}1
-                {ö}{{\\\"o}}1
-                {ú}{{\\'u}}1
-                {ü}{{\\\"u}}1
-                {¹}{{\\textsuperscript1}}1
-                {²}{{\\textsuperscript2}}1
-                {³}{{\\textsuperscript3}}1
-                {ı}{{\\i}}1
-                {—}{{---}}1
-                {’}{{'}}1
-                {…}{{\\dots}}1
-                {⮠}{{$\\hookleftarrow$}}1
-                {␣}{{\\textvisiblespace}}1,
-                keywordstyle=\\color{DarkGreen}\\bfseries,
-                identifierstyle=\\color{DarkRed},
-                commentstyle=\\color{Gray}\\upshape,
-                stringstyle=\\color{DarkBlue}\\upshape,
-                emphstyle=\\color{Chocolate}\\upshape,
-                showstringspaces=false,
-                columns=fullflexible,
-                keepspaces=true}
+                 {§}{{\\S}}1
+                 {©}{{\\raisebox{.125ex}{\\copyright}\\enspace}}1
+                 {«}{{\\guillemotleft}}1
+                 {»}{{\\guillemotright}}1
+                 {Á}{{\\'A}}1
+                 {Ä}{{\\\"A}}1
+                 {É}{{\\'E}}1
+                 {Í}{{\\'I}}1
+                 {Ó}{{\\'O}}1
+                 {Ö}{{\\\"O}}1
+                 {Ú}{{\\'U}}1
+                 {Ü}{{\\\"U}}1
+                 {ß}{{\\ss}}2
+                 {à}{{\\`a}}1
+                 {á}{{\\'a}}1
+                 {ä}{{\\\"a}}1
+                 {é}{{\\'e}}1
+                 {í}{{\\'i}}1
+                 {ó}{{\\'o}}1
+                 {ö}{{\\\"o}}1
+                 {ú}{{\\'u}}1
+                 {ü}{{\\\"u}}1
+                 {¹}{{\\textsuperscript1}}1
+                  {²}{{\\textsuperscript2}}1
+                  {³}{{\\textsuperscript3}}1
+                 {ı}{{\\i}}1
+                 {—}{{---}}1
+                 {’}{{'}}1
+                 {…}{{\\dots}}1
+                    {⮠}{{$\\hookleftarrow$}}1
+                 {␣}{{\\textvisiblespace}}1,
+                 keywordstyle=\\color{DarkGreen}\\bfseries,
+                 identifierstyle=\\color{DarkRed},
+                 commentstyle=\\color{Gray}\\upshape,
+                 stringstyle=\\color{DarkBlue}\\upshape,
+                 emphstyle=\\color{Chocolate}\\upshape,
+                 showstringspaces=false,
+                 columns=fullflexible,
+                 keepspaces=true}
         \\usepackage[a4paper,margin=1in,left=1.5in]{geometry}
         \\usepackage{parskip}
         \\makeatletter
         \\renewcommand{\\maketitle}{%
-        \\begingroup\\parindent0pt
-        \\sffamily
-        \\Huge{\\bfseries\\@title}\\par\\bigskip
-        \\LARGE{\\bfseries\\@author}\\par\\medskip
-        \\normalsize\\@date\\par\\bigskip
-        \\endgroup\\@afterindentfalse\\@afterheading}
+          \\begingroup\\parindent0pt
+          \\sffamily
+          \\Huge{\\bfseries\\@title}\\par\\bigskip
+          \\LARGE{\\bfseries\\@author}\\par\\medskip
+          \\normalsize\\@date\\par\\bigskip
+          \\endgroup\\@afterindentfalse\\@afterheading}
         \\makeatother
         [DEFAULT-PACKAGES]
         \\hypersetup{linkcolor=Blue,urlcolor=DarkBlue,
-        citecolor=DarkRed,colorlinks=true}
+          citecolor=DarkRed,colorlinks=true}
         \\AtBeginDocument{\\renewcommand{\\UrlFont}{\\ttfamily}}
         [PACKAGES]
         [EXTRA]"
@@ -183,36 +201,31 @@
         ("\\subsection{%s}" . "\\subsection*{%s}")
         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
         ("\\paragraph{%s}" . "\\paragraph*{%s}")
-        ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
 
-        ("report" "\\documentclass[11pt]{report}"
+        ("report" "\\documentclass[11pt]{report}")
         ("\\part{%s}" . "\\part*{%s}")
         ("\\chapter{%s}" . "\\chapter*{%s}")
         ("\\section{%s}" . "\\section*{%s}")
         ("\\subsection{%s}" . "\\subsection*{%s}")
-        ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 
-        ("book" "\\documentclass[11pt]{book}"
+        ("book" "\\documentclass[11pt]{book}")
         ("\\part{%s}" . "\\part*{%s}")
         ("\\chapter{%s}" . "\\chapter*{%s}")
         ("\\section{%s}" . "\\section*{%s}")
         ("\\subsection{%s}" . "\\subsection*{%s}")
-        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-)
-
-
-(add-hook! 'gnu-apl-mode-hook
-           (cmd! (set-input-method "APL-Z")))
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 
 (add-hook! 'haskell-mode-hook
-        (use-package dante
+        (use-package dante)
         :ensure t
         :after haskell-mode
         :commands 'dante-mode
         :init
         (add-hook! 'haskell-mode-hook 'flycheck-mode)
-        (add-hook! 'haskell-mode-hook 'dante-mode)
-        )
+        (add-hook! 'haskell-mode-hook 'dante-mode))
+        
 )
 (setq haskell-process-type 'ghci)
 (add-hook! 'haskell-mode-hook (dante-mode))
@@ -230,16 +243,18 @@
       :n "<f2>" (cmd! (shell-command buffer-file-name )))
 (require 'ob-haskell)
 (add-hook! `c-or-c++-mode
-        (map! :desc "Make"
+        (map! :desc "Make")
         :n "<f2>" #'+make/run)
-)
 
-(setq! default-input-method "APL-Z")
+
+;(setq! default-input-method "APL-Z")
 (setq lsp-auto-guess-root t)
 (rainbow-delimiters-mode)
 (rainbow-mode)
 (minimap-mode)
 (global-prettify-symbols-mode)
 (global-auto-composition-mode t)
+
+
 
 

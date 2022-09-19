@@ -63,7 +63,7 @@ in {
       rm = "trash";
       open = "xdg-open";
       icat = "kitty +kitten icat";
-      emacs = "emacsclient -c";
+      #emacs = "emacsclient -c";
 
     };
 

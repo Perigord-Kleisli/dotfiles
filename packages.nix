@@ -19,7 +19,7 @@ lib.lists.flatten [
     [
       blender # 3d Modelling
       inkscape # SVG
-      pkgsUnstable.krita 
+      krita 
 
       kdenlive # video editor
       #(unable to run on intel hd) pkgsUnstable.davinci-resolve # video editor
@@ -94,6 +94,7 @@ lib.lists.flatten [
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraMono" ]; })
     #(doesnt work with zplug) raleway
     etBook
+    times-newer-roman    
   ]
 
   #Gaming
@@ -110,7 +111,7 @@ lib.lists.flatten [
 
   #Networking/Social
   [
-    discord
+    pkgsUnstable.discord
     firefox
     chromium
     kdeconnect
@@ -124,6 +125,8 @@ lib.lists.flatten [
 
     #C/C++
     [
+      clang
+      ccls
       gnumake
       cmake
       cmake-format
