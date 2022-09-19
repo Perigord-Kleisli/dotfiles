@@ -4,9 +4,9 @@ let
 
   onNixos = (pkgs.lib.trivial.importJSON ./profile.json).on_nixos;
   isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).is_minimal;
+  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 
-  pkgsUnstable =
-    (if onNixos then import <nixos-unstable> { } else import <unstable> { });
+  pkgsUnstable = import unstableTarball {};
 
   userName = builtins.getEnv "USER";
   homeDir = builtins.getEnv "HOME";
