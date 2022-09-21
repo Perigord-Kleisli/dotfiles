@@ -44,6 +44,9 @@
 
       WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
+      autoload -U +X compinit && compinit
+      autoload -U +X bashcompinit && bashcompinit
+      eval "$(idris2 --bash-completion-script idris2)"
 
       export PATH=$PATH:$HOME/.local/bin/:$HOME/.ghcup/bin/
       eval "$(zoxide init zsh)"
