@@ -119,6 +119,7 @@ lib.lists.flatten [
 
   #Dev
   [
+    qemu
     neovim
     neovide
     vscode
