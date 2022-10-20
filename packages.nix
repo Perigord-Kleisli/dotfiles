@@ -60,6 +60,7 @@ lib.lists.flatten [
       ripgrep # faster grep
       libtool
       jq
+      tldr
 
       pandoc
       nodePackages.live-server
@@ -93,6 +94,7 @@ lib.lists.flatten [
   [
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraMono" ]; })
     #(doesnt work with zplug) raleway
+    liberation_ttf_v1
     etBook
     times-newer-roman    
   ]
@@ -122,7 +124,6 @@ lib.lists.flatten [
     qemu
     neovim
     neovide
-    vscode
 
     #C/C++
     [
@@ -182,6 +183,7 @@ lib.lists.flatten [
     [
       nixfmt
       rnix-lsp
+      manix
       nix-prefetch-git
       statix
       niv

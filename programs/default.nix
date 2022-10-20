@@ -4,5 +4,6 @@
   ./zsh
   ./emacs
   ./firefox
+  ./vscode
   ./git
 ]
