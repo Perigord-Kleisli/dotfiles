@@ -122,7 +122,7 @@ lib.lists.flatten [
   #Dev
   [
     qemu
-    neovim
+    pkgsUnstable.neovim
     neovide
 
     #C/C++
