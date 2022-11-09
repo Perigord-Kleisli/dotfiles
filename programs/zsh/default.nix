@@ -21,6 +21,7 @@
         (plug { plugName = "rust"; })
         (plug { plugName = "zsh-autosuggestions"; })
         (plug { plugName = "zsh-bash"; })
+        (plug { plugName = "zsh-poetry"; })
         (plug {
           plugName = "pluginzsh-autopair";
           tags = [ "from:oh-my-zsh" "defer:2" ];

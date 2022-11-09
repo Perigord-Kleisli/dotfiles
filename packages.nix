@@ -31,6 +31,7 @@ lib.lists.flatten [
   #Utils
   [
     qalculate-gtk
+    maestral #Dropbox client
 
     wine64
     proton-caller
@@ -82,8 +83,6 @@ lib.lists.flatten [
   #Shell
   [
     direnv
-
-    zplug
     zsh
     zsh-autosuggestions
     zsh-autopair
@@ -93,7 +92,7 @@ lib.lists.flatten [
   #Fonts
   [
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraMono" ]; })
-    #(doesnt work with zplug) raleway
+    raleway-overlay
     liberation_ttf_v1
     etBook
     times-newer-roman    
@@ -123,6 +122,11 @@ lib.lists.flatten [
   [
     qemu
     pkgsUnstable.neovim
+    #(vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
+      #tree-sitter-bash
+      #tree-sitter-cpp
+      #tree-sitter-python
+    #]))
     neovide
 
     #C/C++

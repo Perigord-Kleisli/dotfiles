@@ -13,7 +13,7 @@ let
 
 in {
   programs.home-manager.enable = true;
-  nixpkgs.overlays = [ ];
+  nixpkgs.overlays = [ (import ./Overlays/overlay.nix) ];
 
   imports = (import ./programs) 
   	 ++ (import ./share)
@@ -108,7 +108,6 @@ in {
 
   services = {
     emacs.enable = onNixos;
-    dropbox.enable = onNixos;
     lorri.enable = true;
     flameshot = {
       enable = isMinimal;
