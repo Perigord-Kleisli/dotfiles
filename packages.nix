@@ -194,6 +194,11 @@ lib.lists.flatten [
       lorri
     ]
 
+    #BQN 
+    [
+      cbqn
+    ]
+
     #Lua
     [
       sumneko-lua-language-server
