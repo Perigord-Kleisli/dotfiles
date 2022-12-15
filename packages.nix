@@ -164,6 +164,7 @@ lib.lists.flatten [
     [
       cargo
       rustc
+      clippy
       rustfmt
       rust-analyzer
       rls
