@@ -167,7 +167,6 @@ lib.lists.flatten [
       clippy
       rustfmt
       rust-analyzer
-      rls
     ]
 
     #JS
@@ -207,8 +206,9 @@ lib.lists.flatten [
       luajitPackages.luacheck
       luajitPackages.luarocks
       stylua
+      luajitPackages.fennel
+      fennel-ls
 
-      fennel
       fnlfmt
     ]
 
