@@ -20,6 +20,7 @@
         (plug { plugName = "git"; })
         (plug { plugName = "rust"; })
         (plug { plugName = "zsh-autosuggestions"; })
+        (plug { plugName = "wfxr/forgit"; })
         (plug { plugName = "zsh-bash"; })
         (plug { plugName = "zsh-poetry"; })
         (plug {

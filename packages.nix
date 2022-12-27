@@ -72,6 +72,8 @@ lib.lists.flatten [
       trash-cli # rm with recyle bin
       yt-dlp # yt
       lazygit # tui git
+      python310Packages.huggingface-hub
+      git-lfs
       killall
       unzip
       zoxide # smart cd
@@ -207,7 +209,7 @@ lib.lists.flatten [
       luajitPackages.luarocks
       stylua
       luajitPackages.fennel
-      fennel-ls
+      fennel-language-server
 
       fnlfmt
     ]
