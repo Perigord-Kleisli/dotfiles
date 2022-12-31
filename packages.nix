@@ -40,6 +40,7 @@ lib.lists.flatten [
     bottles
     steam-run
     dict
+    ninja
     rlwrap
     wl-clipboard
 
@@ -105,7 +106,7 @@ lib.lists.flatten [
   [
     steam
     pkgsUnstable.lutris
-    pkgsUnstable.rare
+    # pkgsUnstable.rare
     pkgsUnstable.minecraft
     pkgsUnstable.optifine
     steam
