@@ -32,7 +32,7 @@ lib.lists.flatten [
   [
     qalculate-gtk
     maestral #Dropbox client
-
+    nodePackages.cspell
     wine64
     proton-caller
     pkgsUnstable.samba
@@ -69,6 +69,7 @@ lib.lists.flatten [
       btop # task manager
       fzf # fuzzy finder
       fd
+      file
       trash-cli # rm with recyle bin
       yt-dlp # yt
       lazygit # tui git
@@ -188,6 +189,7 @@ lib.lists.flatten [
     #Nix
     [
       nixfmt
+      deadnix
       rnix-lsp
       manix
       nix-prefetch-git
