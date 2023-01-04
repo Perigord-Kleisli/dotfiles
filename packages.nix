@@ -151,6 +151,7 @@ lib.lists.flatten [
     (with haskellPackages; [
       brittany
       cabal2nix
+      fast-tags
       cabal-install
       cabal-fmt
       ghc
