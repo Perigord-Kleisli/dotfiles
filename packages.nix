@@ -163,12 +163,12 @@ lib.lists.flatten [
 
     #Rust
     [
-      cargo
+      pkgsUnstable.cargo
       pkgsUnstable.rustc
-      clippy
-      cargo-nextest
+      pkgsUnstable.clippy
+      pkgsUnstable.cargo-nextest
+      pkgsUnstable.rust-analyzer
       rustfmt
-      rust-analyzer
     ]
 
     #JS
