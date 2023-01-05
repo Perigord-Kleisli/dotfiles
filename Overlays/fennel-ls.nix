@@ -1,4 +1,4 @@
-{stdenv, lib, makeWrapper, luajitPackages, luajit}:
+{ stdenv, lib, makeWrapper, luajitPackages, luajit }:
 
 stdenv.mkDerivation rec {
   pname = "fennel-ls-${version}";
@@ -10,18 +10,18 @@ stdenv.mkDerivation rec {
     ref = "main";
   };
 
-  buildInputs = [makeWrapper luajit luajitPackages.fennel];
+  buildInputs = [ makeWrapper luajit luajitPackages.fennel ];
   makeFlags = [ ''FENNEL="${luajitPackages.fennel}/bin/fennel"'' ];
 
   installPhase = ''
-  mkdir -p $out/bin
-  mv fennel-ls $out/bin
+    install -m755 -D fennel-ls "$out/bin/fennel-ls"
   '';
 
   meta = with lib; {
     description = "A language server for fennel-ls";
     homepage = "https://git.sr.ht/~xerool/fennel-ls";
     license = licenses.mit;
-    maintainers = [];
+    maintainers = [ ];
+    platforms = luajitPackages.fennel.meta.platforms;
   };
 }

@@ -1,5 +1,4 @@
 {lib
-,stdenv
 ,rustPlatform
 ,fetchFromGitHub
 }:
@@ -18,6 +17,7 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "Fennel language server protocol (LSP) support";
     homepage = "https://github.com/rydesun/fennel-language-server";
+    platforms = rustPlatform.rust.rustc.meta.platforms;
     license = with licenses; [mit];
   };
 }

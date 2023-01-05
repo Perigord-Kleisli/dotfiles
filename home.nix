@@ -4,9 +4,10 @@ let
 
   onNixos = (pkgs.lib.trivial.importJSON ./profile.json).on_nixos;
   isMinimal = (pkgs.lib.trivial.importJSON ./profile.json).is_minimal;
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  unstableTarball = fetchTarball
+    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 
-  pkgsUnstable = import unstableTarball {};
+  pkgsUnstable = import unstableTarball { };
 
   userName = builtins.getEnv "USER";
   homeDir = builtins.getEnv "HOME";
@@ -15,9 +16,7 @@ in {
   programs.home-manager.enable = true;
   nixpkgs.overlays = [ (import ./Overlays/overlay.nix) ];
 
-  imports = (import ./programs) 
-  	 ++ (import ./share)
-	 ++ (import ./services);
+  imports = (import ./programs) ++ (import ./share) ++ (import ./services);
 
   targets.genericLinux.enable = !onNixos;
 
@@ -29,14 +28,14 @@ in {
     packages =
       pkgs.callPackage ./packages.nix { inherit pkgs pkgsUnstable isMinimal; };
 
-
     file = (if isMinimal then {
       # ".xprofile".text = "systemctl start --user polybar.service & kitty & nm-applet";
-      ".local/share/words".source = builtins.fetchurl "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
-    } else
-      {
-      ".local/share/words".source = builtins.fetchurl "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
-        });
+      ".local/share/words".source = builtins.fetchurl
+        "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
+    } else {
+      ".local/share/words".source = builtins.fetchurl
+        "https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words";
+    });
 
     shellAliases = {
 

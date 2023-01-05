@@ -19,7 +19,7 @@ lib.lists.flatten [
     [
       blender # 3d Modelling
       inkscape # SVG
-      krita 
+      krita
 
       kdenlive # video editor
       #(unable to run on intel hd) pkgsUnstable.davinci-resolve # video editor
@@ -31,7 +31,7 @@ lib.lists.flatten [
   #Utils
   [
     qalculate-gtk
-    maestral #Dropbox client
+    maestral # Dropbox client
     nodePackages.cspell
     wine64
     proton-caller
@@ -44,7 +44,7 @@ lib.lists.flatten [
     rlwrap
     wl-clipboard
 
-    pavucontrol 
+    pavucontrol
     helvum
     qjackctl
 
@@ -73,13 +73,13 @@ lib.lists.flatten [
       file
       trash-cli # rm with recyle bin
       yt-dlp # yt
+      nodePackages.pyright
       lazygit # tui git
-      python310Packages.huggingface-hub
       git-lfs
       killall
       unzip
       zoxide # smart cd
-      hyperfine #benchmarking tool
+      hyperfine # benchmarking tool
       usbutils
     ]
   ]
@@ -99,7 +99,7 @@ lib.lists.flatten [
     raleway-overlay
     liberation_ttf_v1
     etBook
-    times-newer-roman    
+    times-newer-roman
   ]
 
   #Gaming
@@ -117,6 +117,7 @@ lib.lists.flatten [
   #Networking/Social
   [
     pkgsUnstable.discord
+    element-desktop
     firefox
     chromium
     kdeconnect
@@ -126,11 +127,6 @@ lib.lists.flatten [
   [
     qemu
     pkgsUnstable.neovim
-    #(vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-      #tree-sitter-bash
-      #tree-sitter-cpp
-      #tree-sitter-python
-    #]))
     neovide
 
     #C/C++
@@ -145,7 +141,7 @@ lib.lists.flatten [
       lldb
     ]
 
-    #Haskell 
+    #Haskell
 
     pkgsUnstable.haskell-language-server
     (with haskellPackages; [
@@ -168,8 +164,9 @@ lib.lists.flatten [
     #Rust
     [
       cargo
-      rustc
+      pkgsUnstable.rustc
       clippy
+      cargo-nextest
       rustfmt
       rust-analyzer
     ]
@@ -182,15 +179,24 @@ lib.lists.flatten [
 
     #Python
     [
+      black
+      jdk
+      mypy
+      nodePackages.pyright
+      poetry
       python
       python3
-      #(Errors on non-Nixos distros) python-language-server
-      python39Packages.pylint
+      python310Packages.flake8
+      python310Packages.huggingface-hub
+      python310Packages.isort
+      python310Packages.pylint
+      python310Packages.pytest
     ]
 
     #Nix
     [
       nixfmt
+      nil
       deadnix
       rnix-lsp
       manix
@@ -200,7 +206,7 @@ lib.lists.flatten [
       lorri
     ]
 
-    #BQN 
+    #BQN
     [
       cbqn
     ]
@@ -214,6 +220,7 @@ lib.lists.flatten [
       stylua
       luajitPackages.fennel
       fennel-language-server
+      fennel-ls
 
       fnlfmt
     ]
@@ -241,8 +248,9 @@ lib.lists.flatten [
   [
     ispell
     nodePackages.markdownlint-cli2
-    nodePackages.write-good
+    marksman
     libreoffice
+    nodePackages.grammarly-languageserver
   ]
 
 ]
