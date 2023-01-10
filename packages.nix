@@ -52,7 +52,6 @@ lib.lists.flatten [
     networkmanagerapplet
 
     lxappearance # System theme setter/previewer
-    kdeconnect # Connect with other devices
 
     #Terminal Tools
     [
@@ -81,6 +80,7 @@ lib.lists.flatten [
       zoxide # smart cd
       hyperfine # benchmarking tool
       usbutils
+      obsidian
     ]
   ]
 
@@ -120,7 +120,6 @@ lib.lists.flatten [
     element-desktop
     firefox
     chromium
-    kdeconnect
   ]
 
   #Dev
@@ -146,6 +145,7 @@ lib.lists.flatten [
     pkgsUnstable.haskell-language-server
     (with haskellPackages; [
       brittany
+      alejandra
       cabal2nix
       fast-tags
       cabal-install
@@ -247,10 +247,9 @@ lib.lists.flatten [
   #Writting
   [
     ispell
-    nodePackages.markdownlint-cli2
     marksman
+    nodePackages.prettier
     libreoffice
-    nodePackages.grammarly-languageserver
   ]
 
 ]

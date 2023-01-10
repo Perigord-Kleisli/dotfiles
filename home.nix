@@ -106,6 +106,7 @@ in {
   };
 
   services = {
+    kdeconnect.enable = true;
     emacs.enable = onNixos;
     lorri.enable = true;
     flameshot = {
