@@ -1,0 +1,6 @@
+[submodule "xmonad-config"]
+	path = xmonad-config
+	url = https://github.com/Trouble-Truffle/xmonad-config.git
+[submodule "Perigord-Nvim"]
+	path = Perigord-Nvim
+	url = https://github.com/Trouble-Truffle/Perigord-Nvim.git

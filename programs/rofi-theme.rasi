@@ -1,6 +1,8 @@
 * {
     text-color:                  rgba (243, 247, 240, 100%);
     background-color:            rgba (13, 14, 18, 60%);
+    foreground:                  rgba ( 248, 248, 242, 100 % );
+    background:                  @background-color;
     lightbg:                     #534c48;
     red:                         #f15d22;
     orange:                      #faa41a; 

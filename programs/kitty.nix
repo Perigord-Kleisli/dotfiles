@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   programs.kitty = {
     enable = true;
     font = {
@@ -9,10 +9,15 @@
     settings = {
       tab_bar_style = "powerline";
       disable_ligatures = "cursor";
-      background_opacity = "0.8";
+      background_opacity = "0.95";
+      dynamic_background_opacity = true;
+      allow_remote_control = true;
+
+      # confirm_os_window_close = 0;
+      shell_integration = true;
 
       color0 = "#000407";
-      #color8 = "#14181b";
+      color8 = "#47526B";
       color1 = "#a22f2f";
       color9 = "#b42525";
       color2 = "#8fc84c";
