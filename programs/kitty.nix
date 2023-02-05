@@ -13,7 +13,6 @@
       dynamic_background_opacity = true;
       allow_remote_control = true;
 
-      # confirm_os_window_close = 0;
       shell_integration = true;
 
       color0 = "#000407";

@@ -22,30 +22,24 @@ with pkgs; [
   tldr
   ripgrep
   asciinema
+  fd
   neofetch
   trash-cli
   jq
   rlwrap
   gnumake
   gcc
-  nodejs
+  beautysh
+  steam-run
 
   antibody
 
   shellcheck
-  nodePackages.cspell
-  nodePackages.prettier
-  beautysh
-  marksman
   wakatime
 
   cbqn
 
-  sumneko-lua-language-server
-  stylua
   fennel
-  fnlfmt
-  fennel-language-server
 
   nix-prefetch-github
   statix

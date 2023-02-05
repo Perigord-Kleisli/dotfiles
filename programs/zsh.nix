@@ -53,7 +53,7 @@
     '';
 
     sessionVariables = {
-      NEOVIDE_MULTIGRID = "1";
+      NEOVIDE_MULTIGRID = "true";
       AUTO_NOTIFY_IGNORE = import ./auto-notify-ignore.nix;
       EDITOR = "${pkgs.neovim}/bin/nvim";
     };
