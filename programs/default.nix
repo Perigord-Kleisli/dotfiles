@@ -20,7 +20,12 @@
     lazygit.enable = true;
     readline.enable = true;
     emacs.enable = true;
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
+      defaultEditor = true;
+      withNodeJs = true;
+    };
 
     btop.enable = true;
     fzf = {
