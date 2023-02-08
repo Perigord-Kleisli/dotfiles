@@ -23,6 +23,7 @@ with pkgs; [
   ripgrep
   asciinema
   fd
+  grex
   neofetch
   trash-cli
   jq
@@ -31,6 +32,7 @@ with pkgs; [
   gcc
   beautysh
   steam-run
+  neovide
 
   antibody
 
