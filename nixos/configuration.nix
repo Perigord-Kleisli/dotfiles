@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -22,6 +23,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  virtualisation.docker.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -51,10 +54,12 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      lightdm.enable = true;
+      lightdm = {
+        enable = true;
+      };
     };
     windowManager = {
-      xmonad = { 
+      xmonad = {
         enable = true;
         enableContribAndExtras = true;
       };
@@ -69,7 +74,7 @@
   users.users.truff = {
     isNormalUser = true;
     description = "Home";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "docker" "wheel"];
     shell = pkgs.zsh;
     packages = [];
   };
@@ -87,12 +92,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     home-manager
     kitty
   ];
 
-  environment.shells = with pkgs; [ bashInteractive zsh ];
+  environment.shells = with pkgs; [bashInteractive zsh];
 
   nix = {
     settings = {
@@ -101,6 +106,12 @@
       trusted-public-keys = ["hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="];
       substituters = ["https://cache.iog.io"];
     };
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   programs.dconf.enable = true;

@@ -23,6 +23,7 @@
     dotDir = ".config/zsh";
 
     shellAliases = {
+      luashell = "nix-shell -p stylua sumneko-lua-language-server stylua";
       ytmp3 = "${pkgs.yt-dlp}/bin/yt-dlp -f 'ba' -x --audio-format mp3";
 
       grep = "rg";
