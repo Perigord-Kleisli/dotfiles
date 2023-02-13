@@ -1,6 +1,8 @@
 [
   "vim"
   "nvim"
+  "emacs"
+  "emacsclient"
   "less"
   "more"
   "man"

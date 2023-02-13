@@ -6,6 +6,7 @@ with pkgs; [
   inkscape
   gimp
   blender
+  libreoffice
   gnome.nautilus
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
