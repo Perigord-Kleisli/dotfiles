@@ -30,6 +30,7 @@ with pkgs; [
   jq
   rlwrap
   gnumake
+  python39
   gcc
   beautysh
   steam-run
