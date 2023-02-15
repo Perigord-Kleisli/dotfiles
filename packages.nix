@@ -10,6 +10,7 @@ with pkgs; [
   gnome.nautilus
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  (google-fonts.override {fonts = ["Forum"];})
   raleway-overlay
   liberation_ttf_v1
   etBook
