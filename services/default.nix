@@ -18,6 +18,7 @@
       client.enable = true;
       startWithUserSession = true;
       enable = true;
+      package = pkgs.emacs-gtk;
     };
 
     dropbox.enable = true;

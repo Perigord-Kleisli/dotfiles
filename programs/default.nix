@@ -19,7 +19,12 @@
     obs-studio.enable = true;
     lazygit.enable = true;
     readline.enable = true;
-    emacs.enable = true;
+
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-gtk;
+    };
+    # emacs.enable = true;
     neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
@@ -35,7 +40,7 @@
     gh = {
       enable = true;
       settings = {
-        editor = "${pkgs.neovim}/bin";
+        editor = "nvim";
       };
     };
   };

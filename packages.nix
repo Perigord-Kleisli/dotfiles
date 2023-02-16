@@ -24,6 +24,7 @@ with pkgs; [
   tldr
   ripgrep
   asciinema
+  unzip
   fd
   grex
   neofetch
