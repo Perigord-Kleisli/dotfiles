@@ -11,10 +11,14 @@ with pkgs; [
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
   (google-fonts.override {fonts = ["Forum"];})
+  source-sans-pro
+  nodePackages.grammarly-languageserver
+  ispell
   raleway-overlay
   liberation_ttf_v1
   etBook
   times-newer-roman
+  texlive.combined.scheme-full
 
   unclutter
   xclip
