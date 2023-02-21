@@ -5,8 +5,7 @@
   config,
   pkgs,
   ...
-}: 
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -51,7 +50,9 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   services.flatpak.enable = true;
+
   services.xserver = {
+    xkbOptions = "caps:swapescape";
     enable = true;
     displayManager = {
       lightdm = {
@@ -74,7 +75,7 @@
   users.users.truff = {
     isNormalUser = true;
     description = "Home";
-    extraGroups = ["networkmanager" "docker" "wheel"];
+    extraGroups = ["networkmanager" "video" "docker" "wheel"];
     shell = pkgs.zsh;
     packages = [];
   };
@@ -82,7 +83,7 @@
   users.users.testeer = {
     isNormalUser = true;
     description = "For testing";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "video" "wheel"];
     packages = with pkgs; [rofi];
   };
 
@@ -108,6 +109,7 @@
     };
   };
 
+  programs.light.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
