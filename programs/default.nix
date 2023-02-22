@@ -39,9 +39,6 @@
     yt-dlp.enable = true;
     gh = {
       enable = true;
-      settings = {
-        editor = "nvim";
-      };
     };
   };
 }

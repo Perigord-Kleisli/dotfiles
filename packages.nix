@@ -43,6 +43,7 @@ with pkgs; [
   neovide
 
   antibody
+  acpi
 
   shellcheck
   wakatime
