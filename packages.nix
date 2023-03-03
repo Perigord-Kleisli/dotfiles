@@ -26,6 +26,7 @@ with pkgs; [
   gnuplot
 
   tldr
+  zip
   ripgrep
   asciinema
   unzip
