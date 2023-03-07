@@ -24,6 +24,7 @@ with pkgs; [
   xclip
   libnotify
   gnuplot
+  exercism
 
   tldr
   zip
