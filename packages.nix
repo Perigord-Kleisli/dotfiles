@@ -48,6 +48,7 @@ with pkgs; [
   acpi
 
   shellcheck
+  appimage-run
   wakatime
 
   cbqn
