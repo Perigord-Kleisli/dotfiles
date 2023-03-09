@@ -54,6 +54,8 @@
   services.xserver = {
     xkbOptions = "caps:swapescape";
     enable = true;
+    libinput.enable = true;
+    libinput.touchpad.naturalScrolling = true;
     displayManager = {
       lightdm = {
         enable = true;
@@ -126,6 +128,7 @@
   # List services that you want to enable:
 
   hardware.opentabletdriver.enable = true;
+  hardware.bluetooth.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -136,6 +139,7 @@
   hardware.pulseaudio.enable = false;
 
   security.rtkit.enable = true;
+  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
