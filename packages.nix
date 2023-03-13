@@ -19,6 +19,8 @@ with pkgs; [
   etBook
   times-newer-roman
   texlive.combined.scheme-full
+  imagemagick
+  qalculate-gtk
 
   unclutter
   xclip
