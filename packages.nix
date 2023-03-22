@@ -4,6 +4,7 @@ with pkgs; [
   discord
   element-desktop
   inkscape
+  krita
   gimp
   blender
   libreoffice
