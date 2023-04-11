@@ -64,4 +64,7 @@ with pkgs; [
   nixfmt
   nil
   deadnix
+
+  marksman
+  nodePackages.cspell
 ]
