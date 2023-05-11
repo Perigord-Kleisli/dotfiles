@@ -59,23 +59,78 @@
       EDITOR = "${pkgs.neovim}/bin/nvim";
     };
 
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "~/.config/nixpkgs/programs";
-          tags = ["as:theme" "use:perigord.zsh-theme" "from:local"];
-        }
-        {name = "MichaelAquilina/zsh-auto-notify";}
-        {
-          name = "hlissner/zsh-autopair";
-          tags = ["defer:2"];
-        }
-        {name = "ael-code/zsh-colored-man-pages";}
-        {name = "wfxr/forgit";}
-        {name = "coot/zsh-haskell";}
-      ];
-    };
+    oh-my-zsh.enable = true;
+
+    plugins = [
+      {
+        name = "perigord";
+        file = "perigord.zsh-theme";
+        src = ./perigord;
+      }
+      {
+        name = "auto-notify;";
+        src = pkgs.fetchFromGitHub {
+          owner = "MichaelAquilina";
+          repo = "zsh-auto-notify";
+          rev = "71e8da986f24ffc864c7ee6e4b710a9350e35f79";
+          sha256 = "oPg/XAV+8/KALKAfbUduQFvNEOyG/p3TRaoaiJuMDks=";
+        };
+      }
+      {
+        name = "autopair";
+        src = pkgs.fetchFromGitHub {
+          owner = "hlissner";
+          repo = "zsh-autopair";
+          rev = "396c38a7468458ba29011f2ad4112e4fd35f78e6";
+          sha256 = "PXHxPxFeoYXYMOC29YQKDdMnqTO0toyA7eJTSCV6PGE=";
+        };
+      }
+      {
+        name = "zsh-colored-man-pages";
+        src = pkgs.fetchFromGitHub {
+          owner = "ael-code";
+          repo = "zsh-colored-man-pages";
+          rev = "57bdda68e52a09075352b18fa3ca21abd31df4cb";
+          sha256 = "087bNmB5gDUKoSriHIjXOVZiUG5+Dy9qv3D69E8GBhs=";
+        };
+      }
+      {
+        name = "forgit";
+        src = pkgs.fetchFromGitHub {
+          owner = "wfxr";
+          repo = "forgit";
+          rev = "5642a1a7307c17d452271b9e7aaa8bcec6a47f53";
+          sha256 = "0QiyZL/2AcAEM4WsCsaTxYfJ0GfAFr2xG0kaSsynVTg=";
+        };
+      }
+      {
+        name = "helpers";
+        src = pkgs.fetchFromGitHub {
+          owner = "zpm-zsh";
+          repo = "helpers";
+          rev = "dcbffa97d71b0f3dc30025385ec5e5bd5a063a4b";
+          sha256 = "ag3NCgyGisKCchlqJm7VefuxWgZJUILwH6Tv+Ktzg0U=";
+        };
+      }
+      {
+        name = "rust";
+        src = pkgs.fetchFromGitHub {
+          owner = "zpm-zsh";
+          repo = "rust";
+          rev = "d716f934aed0efe6b5afe80f0dde259793e0b446";
+          sha256 = "3Fi8hpFG2SkwxlnNY5J01iCXdRq5YLlGgYJ9o281fwQ=";
+        };
+      }
+      {
+        name = "haskell";
+        src = pkgs.fetchFromGitHub {
+          owner = "coot";
+          repo = "zsh-haskell";
+          rev = "df8b68726d614ddbe198318b616fc1415a5201ee";
+          sha256 = "yRlMERxetB637hpAAI23+DmeFHNkdS1VmCAkUa41Dn4=";
+        };
+      }
+    ];
 
     initExtra = ''
 
