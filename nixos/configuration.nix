@@ -54,8 +54,6 @@
   services.xserver = {
     xkbOptions = "caps:swapescape";
     enable = true;
-    libinput.enable = true;
-    libinput.touchpad.naturalScrolling = true;
     displayManager = {
       lightdm = {
         enable = true;
@@ -91,6 +89,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -104,6 +105,7 @@
 
   nix = {
     settings = {
+      trusted-users = ["root" "truff"];
       allow-import-from-derivation = "true";
       experimental-features = ["nix-command" "flakes"];
       trusted-public-keys = ["hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="];
@@ -111,7 +113,7 @@
     };
   };
 
-  programs.light.enable = true;
+  # programs.light.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -128,7 +130,6 @@
   # List services that you want to enable:
 
   hardware.opentabletdriver.enable = true;
-  hardware.bluetooth.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -138,8 +139,17 @@
 
   hardware.pulseaudio.enable = false;
 
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
   security.rtkit.enable = true;
-  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -153,6 +163,7 @@
   networking = {
     firewall = {
       enable = true;
+      allowedTCPPorts = [3000 80];
       allowedTCPPortRanges = [
         {
           from = 1714;
