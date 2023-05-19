@@ -71,6 +71,12 @@
 
   services.upower.enable = true;
 
+  services.gnome = {
+    gnome-keyring.enable = true;
+    seahorse.enable = true;
+    at-spi2-core.enable = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.truff = {
     isNormalUser = true;
