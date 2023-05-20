@@ -22,6 +22,7 @@ with pkgs; [
   texlive.combined.scheme-full
   imagemagick
   qalculate-gtk
+  libsForQt5.okular
 
   unclutter
   xclip
