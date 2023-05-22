@@ -25,4 +25,19 @@
 
     dropbox.enable = true;
   };
+
+  systemd.user.services.status-notifier-watcher = {
+    Unit = {
+      Description = "SNI watcher";
+      After = ["dbus.service"];
+    };
+
+    Service = {
+      Type = "dbus";
+      BusName = "org.kde.StatusNotifierWatcher";
+      ExecStart = "${pkgs.haskellPackages.status-notifier-item}/bin/status-notifier-watcher";
+    };
+
+    Install.WantedBy = ["default.target"];
+  };
 }
