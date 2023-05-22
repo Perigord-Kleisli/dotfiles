@@ -11,6 +11,8 @@
       enable = true;
     };
 
+    status-notifier-watcher.enable = true;
+
     trayer.enable = true;
     flameshot.enable = true;
 
