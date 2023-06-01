@@ -73,7 +73,6 @@
 
   services.gnome = {
     gnome-keyring.enable = true;
-    seahorse.enable = true;
     at-spi2-core.enable = true;
   };
 
@@ -125,6 +124,8 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+  programs.zsh.enable = true;
 
   programs.dconf.enable = true;
   # programs.mtr.enable = true;
