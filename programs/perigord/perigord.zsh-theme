@@ -22,7 +22,7 @@ RPROMPT="%B${return_code}%b"
 
 
 
-ZSH_THEME_GIT_PROMPT_PREFIX="$PR_RED ⦃ $PR_YELLOW : "
+ZSH_THEME_GIT_PROMPT_PREFIX="$PR_RED ⦃ $PR_YELLOW : "
 ZSH_THEME_GIT_PROMPT_SUFFIX="$PR_RED ⦄%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ●%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[yellow]%}"

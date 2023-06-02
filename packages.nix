@@ -1,6 +1,5 @@
 {pkgs, ...}:
 with pkgs; [
-  anydesk
   discord
   element-desktop
   inkscape
@@ -11,7 +10,6 @@ with pkgs; [
   gnome.nautilus
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
-  (google-fonts.override {fonts = ["Forum"];})
   source-sans-pro
   nodePackages.grammarly-languageserver
   ispell
