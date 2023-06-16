@@ -24,12 +24,10 @@
       enable = true;
       package = pkgs.emacs-gtk;
     };
-    # emacs.enable = true;
+
     neovim = {
       enable = true;
-      package = pkgs.neovim-nightly;
       defaultEditor = true;
-      withNodeJs = true;
     };
 
     btop.enable = true;
