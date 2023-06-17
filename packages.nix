@@ -20,6 +20,7 @@ with pkgs; [
   texlive.combined.scheme-full
   imagemagick
   qalculate-gtk
+  libqalculate
   libsForQt5.okular
 
   unclutter
