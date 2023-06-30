@@ -22,7 +22,10 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacs-gtk;
+      package = with pkgs;
+        (emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: [
+          epkgs.vterm
+        ]);
     };
 
     neovim = {
