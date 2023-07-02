@@ -132,45 +132,49 @@
       }
     ];
 
-    initExtra = ''
+    initExtra =
+      ''
+        export XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
 
-      export XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
+        autoload -U history-search-end
+        zle -N history-beginning-search-backward-end history-search-end
+        zle -N history-beginning-search-forward-end history-search-end
 
-      autoload -U history-search-end
-      zle -N history-beginning-search-backward-end history-search-end
-      zle -N history-beginning-search-forward-end history-search-end
+        bindkey -e
+        bindkey ";5D" backward-word
+        bindkey ";5C" forward-word
+        bindkey \^u backward-kill-line
+        bindkey "^[[A" history-beginning-search-backward-end
+        bindkey "^[[B" history-beginning-search-forward-end
+        bindkey \^h backward-word
+        bindkey \^l forward-word
+        bindkey \^j history-search-forward
+        bindkey \^k history-search-backward
 
-      bindkey -e
-      bindkey ";5D" backward-word
-      bindkey ";5C" forward-word
-      bindkey \^u backward-kill-line
-      bindkey "^[[A" history-beginning-search-backward-end
-      bindkey "^[[B" history-beginning-search-forward-end
-      bindkey \^h backward-word
-      bindkey \^l forward-word
-      bindkey \^j history-search-forward
-      bindkey \^k history-search-backward
+        WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+        export PATH=$PATH:$HOME/.local/bin/
+        eval "$(zoxide init zsh)"
+        # eval "$(idris2 --bash-completion-script idris2)"
 
-      WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
-      export PATH=$PATH:$HOME/.local/bin/
-      eval "$(zoxide init zsh)"
-      # eval "$(idris2 --bash-completion-script idris2)"
+        function plot {
+        cat <<HEREDOC | gnuplot
+            set terminal pngcairo enhanced font 'Fira Sans,10'
+            set autoscale
+            set samples 1000
+            set output '|kitty +kitten icat --stdin yes'
+            set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb"#fdf6e3" behind
+            plot $@
+            set output '/dev/null'
+        HEREDOC
+        }
 
-      function plot {
-      cat <<HEREDOC | gnuplot
-          set terminal pngcairo enhanced font 'Fira Sans,10'
-          set autoscale
-          set samples 1000
-          set output '|kitty +kitten icat --stdin yes'
-          set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb"#fdf6e3" behind
-          plot $@
-          set output '/dev/null'
-      HEREDOC
-      }
-
-      function run() {
-        nix-shell -p "$1" --run "$*"
-      }
-    '';
+        function run() {
+          nix-shell -p "$1" --run "$*"
+        }
+      ''
+      + (builtins.concatStringsSep ""
+        (map (x: builtins.readFile (./completions/. + ("/" + x)))
+          (pkgs.lib.attrNames
+            (builtins.readDir ./completions))));
   };
 }

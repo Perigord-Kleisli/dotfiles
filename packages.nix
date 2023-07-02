@@ -46,6 +46,8 @@ with pkgs; [
   beautysh
   steam-run
   neovide
+  maestral
+  maestral-gui
 
   antibody
   acpi
