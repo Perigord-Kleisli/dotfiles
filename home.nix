@@ -8,7 +8,7 @@ in {
   home = {
     inherit username;
     inherit homeDirectory;
-    stateVersion = "22.11";
+    stateVersion = "23.05";
     packages = import ./packages.nix {inherit pkgs;};
   };
 

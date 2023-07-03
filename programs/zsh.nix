@@ -172,9 +172,6 @@
           nix-shell -p "$1" --run "$*"
         }
       ''
-      + (builtins.concatStringsSep ""
-        (map (x: builtins.readFile (./completions/. + ("/" + x)))
-          (pkgs.lib.attrNames
-            (builtins.readDir ./completions))));
+      + (builtins.readFile ./completions/maestral.zsh);
   };
 }
