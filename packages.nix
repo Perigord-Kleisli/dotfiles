@@ -1,5 +1,6 @@
 {pkgs, ...}:
 with pkgs; [
+  bitwarden-cli
   discord
   element-desktop
   inkscape
