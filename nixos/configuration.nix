@@ -52,6 +52,12 @@
   services.flatpak.enable = true;
 
   services.xserver = {
+    libinput = {
+      touchpad.naturalScrolling = true;
+      touchpad.middleEmulation = true;
+      touchpad.tapping = true;
+      enable = true;
+    };
     xkbOptions = "caps:swapescape";
     enable = true;
     displayManager = {
@@ -170,7 +176,8 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [3000 80];
+      allowedTCPPorts = [3000 80 17500];
+      allowedUDPPorts = [17500]; # 175000 for Dropbox
       allowedTCPPortRanges = [
         {
           from = 1714;
