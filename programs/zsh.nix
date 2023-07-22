@@ -154,7 +154,6 @@
         WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
         export PATH=$PATH:$HOME/.local/bin/
         eval "$(zoxide init zsh)"
-        # eval "$(idris2 --bash-completion-script idris2)"
 
         function plot {
         cat <<HEREDOC | gnuplot
@@ -166,6 +165,25 @@
             plot $@
             set output '/dev/null'
         HEREDOC
+        }
+        
+        export ESC_SWAPPED=0
+
+        function swap_esc() {
+            if [[ $ESC_SWAPPED -eq 0 ]]; then 
+                cat <<HEREDOC | xmodmap -
+                    clear lock
+                    keycode 9 = Caps_Lock
+                    keycode 66 = Escape
+        HEREDOC
+                ESC_SWAPPED=1
+            else
+                cat <<HEREDOC | xmodmap -
+                    keycode 66 = Caps_Lock
+                    keycode 9 = Escape
+        HEREDOC
+                ESC_SWAPPED=0
+            fi
         }
 
         function run() {

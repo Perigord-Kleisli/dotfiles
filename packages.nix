@@ -72,4 +72,5 @@ with pkgs; [
   marksman
   nodePackages.cspell
   wordnet
+  xorg.xmodmap
 ]
