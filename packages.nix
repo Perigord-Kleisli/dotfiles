@@ -71,6 +71,8 @@ with pkgs; [
 
   marksman
   nodePackages.cspell
+  nodejs
+  gpick
   wordnet
   xorg.xmodmap
 ]

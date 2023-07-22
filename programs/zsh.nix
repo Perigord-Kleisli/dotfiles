@@ -185,6 +185,7 @@
                 ESC_SWAPPED=0
             fi
         }
+        swap_esc
 
         function run() {
           nix-shell -p "$1" --run "$*"

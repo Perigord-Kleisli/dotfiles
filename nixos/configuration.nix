@@ -47,20 +47,23 @@
 
   # Configure keymap in X11
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   services.flatpak.enable = true;
 
   services.xserver = {
+    desktopManager.plasma5.enable = true;
     libinput = {
       touchpad.naturalScrolling = true;
       touchpad.middleEmulation = true;
       touchpad.tapping = true;
       enable = true;
     };
-    xkbOptions = "caps:swapescape";
     enable = true;
     displayManager = {
       lightdm = {
+        extraConfig = ''
+        [SeatDefaults]
+        user-session=none+xmonad
+        '';
         enable = true;
       };
     };
@@ -88,13 +91,6 @@
     extraGroups = ["networkmanager" "video" "docker" "wheel"];
     shell = pkgs.zsh;
     packages = [];
-  };
-
-  users.users.testeer = {
-    isNormalUser = true;
-    description = "For testing";
-    extraGroups = ["networkmanager" "video" "wheel"];
-    packages = with pkgs; [rofi];
   };
 
   # Allow unfree packages

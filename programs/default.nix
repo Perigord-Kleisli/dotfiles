@@ -1,5 +1,8 @@
-{pkgs, ...}: {
-  imports = [./zsh.nix ./git.nix ./firefox.nix ./kitty.nix ./rofi.nix];
+{
+  pkgs,
+  ...
+}: {
+  imports = [./zsh.nix ./git.nix ./firefox.nix ./kitty.nix ./rofi];
 
   programs = {
     bat = {
@@ -41,5 +44,6 @@
     gh = {
       enable = true;
     };
+
   };
 }
