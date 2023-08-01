@@ -11,6 +11,7 @@ with pkgs; [
   gnome.nautilus
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  (google-fonts.override {fonts = ["Space Grotesk" "Roboto"];})
   source-sans-pro
   nodePackages.grammarly-languageserver
   ispell
@@ -75,4 +76,12 @@ with pkgs; [
   gpick
   wordnet
   xorg.xmodmap
+
+  swaynotificationcenter 
+  wl-clipboard
+  killall
+  feh
+  dunst
+
+  usbutils
 ]

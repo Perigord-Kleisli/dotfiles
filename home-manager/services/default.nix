@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [./picom.nix];
   services = {
+    clipman.enable = true;
     gnome-keyring.enable = true;
     kdeconnect = {
       enable = true;
@@ -9,11 +10,12 @@
 
     dunst = {
       enable = true;
+      configFile = ./dunstrc;
     };
 
     status-notifier-watcher.enable = true;
 
-    trayer.enable = true;
+    # trayer.enable = true;
     flameshot.enable = true;
 
     emacs = {

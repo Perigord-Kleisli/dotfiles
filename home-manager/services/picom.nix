@@ -1,6 +1,15 @@
-{
+{pkgs, ...}: {
   services.picom = {
     enable = true;
+    # package = pkgs.picom-next;
+    # package = pkgs.picom.overrideAttrs (_: {
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "Cobalt-Inferno";
+    #     repo = "picom-fork";
+    #     rev = "ebf8357402ac0a3184015403dd2170a2ba329675";
+    #     hash = "sha256-GA5UjejiROaFlsbEyVWLCD+e2rwxhpb0epwEwZMaqP4=";
+    #   };
+    # });
     backend = "glx";
     vSync = true;
 
@@ -36,13 +45,14 @@
       dropdown_menu = {opacity = 1.0;};
     };
     settings = {
+      animations = true;
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
       detect-rounded-corners = true;
       detect-client-opacity = true;
-
       corner-radius = 10;
       round-borders = 1;
+
       blur = {
         method = "dual_kawase";
         strength = 2;

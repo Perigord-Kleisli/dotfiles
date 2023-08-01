@@ -12,11 +12,12 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -49,21 +50,23 @@
   xdg.portal.enable = true;
   services.flatpak.enable = true;
 
+  programs.hyprland.enable = true;
   services.xserver = {
-    desktopManager.plasma5.enable = true;
     libinput = {
-      touchpad.naturalScrolling = true;
-      touchpad.middleEmulation = true;
-      touchpad.tapping = true;
       enable = true;
+      touchpad = {
+        naturalScrolling = true;
+        middleEmulation = true;
+      };
+      mouse = {
+        accelProfile = "flat";
+        accelSpeed = "-0.5";
+      };
     };
     enable = true;
     displayManager = {
+      defaultSession = "none+xmonad";
       lightdm = {
-        extraConfig = ''
-        [SeatDefaults]
-        user-session=none+xmonad
-        '';
         enable = true;
       };
     };
@@ -73,11 +76,16 @@
         enableContribAndExtras = true;
       };
     };
+    desktopManager.plasma5 = {
+      enable = true;
+    };
     layout = "us";
     xkbVariant = "";
   };
 
   services.upower.enable = true;
+
+  services.postgresql.enable = true;
 
   services.gnome = {
     gnome-keyring.enable = true;
@@ -97,6 +105,22 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  };
+
+  systemd.services.brightness = {
+    enable = true;
+    description = "Set brightness writable to everybody";
+    unitConfig = {
+      Type = "oneshot";
+      Before = "nodered.service";
+    };
+    serviceConfig = {
+      User = "root";
+      ExecStart = ''
+        /bin/sh -c "chgrp -R -H video /sys/class/backlight/intel_backlight && chmod g+w /sys/class/backlight/intel_backlight/brightness"
+      '';
+    };
+    wantedBy = ["multi-user.target"];
   };
 
   # List packages installed in system profile. To search, run:

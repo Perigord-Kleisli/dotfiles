@@ -9,13 +9,13 @@
     settings = {
       tab_bar_style = "powerline";
       disable_ligatures = "cursor";
-      background_opacity = "0.95";
+      background_opacity = "0.75";
       dynamic_background_opacity = true;
       allow_remote_control = true;
 
       shell_integration = true;
 
-      color0 = "#000407";
+      color0 = "#2F302F";
       color8 = "#47526B";
       color1 = "#a22f2f";
       color9 = "#b42525";
