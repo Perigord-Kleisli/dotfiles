@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
   ];
 
+  boot.supportedFilesystems = ["ntfs"];
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -59,6 +60,7 @@
         middleEmulation = true;
       };
       mouse = {
+        middleEmulation = false;
         accelProfile = "flat";
         accelSpeed = "-0.5";
       };
@@ -73,7 +75,6 @@
     windowManager = {
       xmonad = {
         enable = true;
-        enableContribAndExtras = true;
       };
     };
     desktopManager.plasma5 = {
@@ -85,7 +86,14 @@
 
   services.upower.enable = true;
 
-  services.postgresql.enable = true;
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = ["sandboxdb"];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
 
   services.gnome = {
     gnome-keyring.enable = true;

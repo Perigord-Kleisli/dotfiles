@@ -26,7 +26,7 @@
     emacs = {
       enable = true;
       package = with pkgs;
-        (emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: [
+        (emacsPackagesFor emacsGcc).emacsWithPackages (epkgs: [
           epkgs.vterm
         ]);
     };

@@ -15,7 +15,7 @@
 
     shadow = false;
     fade = true;
-    fadeDelta = 3;
+    fadeDelta = 8;
 
     fadeExclude = [
       "name = 'XOSD'"
