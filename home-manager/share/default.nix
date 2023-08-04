@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   xdg.enable = true;
   qt = {
     enable = true;
@@ -13,6 +13,12 @@
       package = pkgs.papirus-icon-theme;
     };
 
+    font = {
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
+      size = 10;
+    };
+
     theme = {
       name = "palenight";
       package = pkgs.palenight-theme;
@@ -21,6 +27,13 @@
     cursorTheme = {
       name = "Numix-Cursor";
       package = pkgs.numix-cursor-theme;
+    };
+
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      extraConfig = ''
+        gtk-enable-animation = 1;
+      '';
     };
 
     gtk3.extraConfig = {
