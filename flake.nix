@@ -7,14 +7,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     devenv.url = "github:cachix/devenv/latest";
-    emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
   };
 
   outputs = {
     nixpkgs,
     devenv,
     home-manager,
-    emacs-overlay,
     perigord-greeter,
     ...
   } @ inputs: let
@@ -27,7 +25,6 @@
           devenv = devenv.packages.${system}.devenv;
           perigord-greeter = perigord-greeter.packages.${system}.default;
         })
-        emacs-overlay.overlay
       ];
       config.allowUnfree = true;
     };

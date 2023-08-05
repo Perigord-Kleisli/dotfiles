@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }: {
   imports = [./zsh.nix ./git.nix ./firefox.nix ./kitty.nix ./rofi];
@@ -23,14 +24,6 @@
     lazygit.enable = true;
     readline.enable = true;
 
-    emacs = {
-      enable = true;
-      package = with pkgs;
-        (emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: [
-          epkgs.vterm
-        ]);
-    };
-
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -44,6 +37,5 @@
     gh = {
       enable = true;
     };
-
   };
 }

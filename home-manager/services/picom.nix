@@ -48,10 +48,7 @@
       animations = true;
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
-      detect-rounded-corners = true;
       detect-client-opacity = true;
-      corner-radius = 10;
-      round-borders = 1;
 
       blur = {
         method = "dual_kawase";

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   programs.exa.enable = true;
   programs.direnv = {
     enable = true;
@@ -152,7 +152,7 @@
         bindkey \^k history-search-backward
 
         WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
-        export PATH=$PATH:$HOME/.local/bin/
+        export PATH=$PATH:$HOME/.local/bin/:${config.xdg.configHome}/emacs/bin
         eval "$(zoxide init zsh)"
 
         function plot {

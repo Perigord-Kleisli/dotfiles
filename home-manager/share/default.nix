@@ -1,5 +1,27 @@
-{pkgs, config, ...}: {
-  xdg.enable = true;
+{
+  pkgs,
+  config,
+  ...
+}: {
+  xdg = {
+    enable = true;
+    desktopEntries = {
+      "PureRef" = {
+        type = "Application";
+        terminal = false;
+        name = "PureRef";
+        icon = ./data/PureRef.png;
+        exec = let
+          pureRef = pkgs.requireFile {
+            name = "PureRef-1.11.1_x64.Appimage";
+            sha256 = "75afdd1f4aee239eb6272969bc4f5fdb3314489e7af93ed8d3194fff1af7ca16";
+            url = "https://www.pureref.com/download.php";
+          };
+        in "${pkgs.appimage-run}/bin/appimage-run ${pureRef}";
+      };
+    };
+  };
+
   qt = {
     enable = true;
     platformTheme = "gtk";
