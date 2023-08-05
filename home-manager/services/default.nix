@@ -30,12 +30,26 @@
     };
   };
 
+  systemd.user.services.nm-tray = {
+    Unit = {
+      Description = "Simple Network Manager frontend written in Qt";
+      After = ["tray.target"];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.nm-tray}/bin/nm-tray";
+    };
+    Install = {
+      WantedBy = ["default.target"];
+    };
+  };
+
   systemd.user.services.maestral-daemon = {
     Unit = {
       Description = "Maestral daemon for the config %i";
     };
     Service = {
-      Type = "notify";
+      Type = "simple";
       ExecStart = "${pkgs.python310Packages.maestral}/bin/maestral start -f -c %i";
       WatchdogSec = 30;
       ExecStop = "${pkgs.python310Packages.maestral}/bin/maestral stop -c %i";
