@@ -10,7 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
+  hardware.bluetooth.enable = true;
   boot.supportedFilesystems = ["ntfs"];
   # Bootloader.
   boot.loader = {
@@ -50,6 +50,7 @@
   # Configure keymap in X11
   xdg.portal.enable = true;
   services.flatpak.enable = true;
+  services.blueman.enable = true;
 
   programs.hyprland.enable = true;
   services.xserver = {

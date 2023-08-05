@@ -14,8 +14,9 @@
     };
 
     status-notifier-watcher.enable = true;
+    blueman-applet.enable = true;
+    mpris-proxy.enable = true;
 
-    # trayer.enable = true;
     flameshot.enable = true;
 
     emacs = {
