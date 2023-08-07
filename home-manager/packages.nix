@@ -29,7 +29,12 @@ with pkgs; [
   xclip
   libnotify
   gnuplot
+  ((emacsPackagesFor emacs-gtk).emacsWithPackages
+    (epkgs: [
+      epkgs.vterm
+    ]))
   exercism
+  sqlite
 
   tldr
   zip
@@ -77,7 +82,7 @@ with pkgs; [
   wordnet
   xorg.xmodmap
 
-  swaynotificationcenter 
+  swaynotificationcenter
   wl-clipboard
   killall
   feh

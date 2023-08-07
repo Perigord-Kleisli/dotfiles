@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-  imports = [./picom.nix];
   services = {
     clipman.enable = true;
     gnome-keyring.enable = true;

@@ -2,7 +2,6 @@
   description = "NixOS configuration";
 
   inputs = {
-    perigord-greeter.url = "path:/home/truff/.local/src/perigord-greeter";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +12,6 @@
     nixpkgs,
     devenv,
     home-manager,
-    perigord-greeter,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -21,9 +19,16 @@
       inherit system;
       overlays = [
         (import ./overlays)
-        (_: _: {
+        (_: prev: {
           devenv = devenv.packages.${system}.devenv;
-          perigord-greeter = perigord-greeter.packages.${system}.default;
+          picom = prev.picom.overrideAttrs (_: {
+            src = prev.fetchFromGitHub {
+              owner = "pijulius"; # This is a fork of picom with animations
+              repo = "picom";
+              rev = "982bb43e5d4116f1a37a0bde01c9bda0b88705b9";
+              sha256 = "YiuLScDV9UfgI1MiYRtjgRkJ0VuA1TExATA2nJSJMhM=";
+            };
+          });
         })
       ];
       config.allowUnfree = true;
