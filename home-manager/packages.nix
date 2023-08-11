@@ -36,6 +36,13 @@ with pkgs; [
   exercism
   sqlite
 
+  zoom-us
+  qemu
+  virt-manager
+  gtk-engine-murrine
+  gtkmm4
+  gtkmm3
+
   tldr
   zip
   ripgrep

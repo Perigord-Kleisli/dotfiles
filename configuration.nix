@@ -101,7 +101,7 @@
   users.users.truff = {
     isNormalUser = true;
     description = "Home";
-    extraGroups = ["networkmanager" "video" "docker" "wheel"];
+    extraGroups = ["networkmanager" "video" "docker" "wheel" "libvirtd"];
     shell = pkgs.zsh;
     packages = [];
   };
@@ -110,6 +110,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+    vscode = pkgs.vscode;
   };
 
   systemd.services.brightness = {
@@ -130,6 +131,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  virtualisation.libvirtd.enable = true;
   environment.systemPackages = with pkgs; [
     vim
     home-manager

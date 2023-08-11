@@ -1,25 +1,29 @@
-{...}: {
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}: {
   services.picom = {
     enable = true;
     settings = {
-      animations = true;
-      animation-stiffness = 300.0;
-      animation-dampening = 35.0;
-      animation-clamping = false;
-      animation-mass = 1;
-      animation-for-workspace-switch-in = "auto";
-      animation-for-workspace-switch-out = "auto";
-      animation-for-open-window = "slide-down";
-      animation-for-menu-window = "none";
-      animation-for-transient-window = "slide-down";
-      corner-radius = 12;
+      # animations = true;
+      # animation-stiffness = 300.0;
+      # animation-dampening = 35.0;
+      # animation-clamping = false;
+      # animation-mass = 1;
+      # animation-for-workspace-switch-in = "slide-left";
+      # animation-for-workspace-switch-out = "slide-right";
+      # animation-for-open-window = "slide-down";
+      # animation-for-menu-window = "none";
+      # animation-for-transient-window = "slide-down";
       rounded-corners-exclude = [
-        "class_i = 'polybar'"
-        "class_g = 'i3lock'"
+        "class_i = 'taffybar'"
+        # "class_g = 'i3lock'"
       ];
+      corner-radius = 12;
       round-borders = 3;
-      round-borders-exclude = [];
-      round-borders-rule = [];
       shadow = true;
       shadow-radius = 8;
       shadow-opacity = 0.4;
@@ -36,13 +40,13 @@
       opacity-rule = [
         "100:class_g = 'i3lock'"
         "60:class_g = 'Dunst'"
-        "100:class_g = 'Alacritty' && focused"
-        "90:class_g = 'Alacritty' && !focused"
+        "100:class_g = 'kitty' && focused"
+        "90:class_g = 'kitty' && !focused"
       ];
 
-      blur-kern = "3x3box";
+      # blur-kern = "3x3box";
       blur = {
-        method = "kernel";
+        method = "gaussian";
         strength = 8;
         background = false;
         background-frame = false;
