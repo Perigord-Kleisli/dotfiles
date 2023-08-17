@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  config,
   ...
 }: let
   homeDirectory = "/home/${username}";
@@ -10,6 +11,16 @@ in {
     inherit homeDirectory;
     stateVersion = "23.05";
     packages = import ./packages.nix {inherit pkgs;};
+    sessionVariables = with config.xdg; {
+      HISTFILE = "${stateHome}/bash/history";
+      CABAL_CONFIG = "${configHome}/cabal/config";
+      CABAL_DIR = "${dataHome}/cabal";
+      CARGO_HOME = "${dataHome}/cargo";
+      GNUPGHOME = "${dataHome}/gnupg";
+      GTK2_RC_FILES = "${configHome}/gtk-2.0/gtkrc";
+      XCOMPOSECACHE="${cacheHome}/x11/xcompose";
+      ERRFILE="${cacheHome}/X11/xsession-errors";
+    };
   };
 
   imports = [./programs ./services ./share];

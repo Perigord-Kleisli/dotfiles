@@ -11,7 +11,7 @@ with pkgs; [
   gnome.nautilus
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
-  (google-fonts.override {fonts = ["Space Grotesk" "Roboto"];})
+  (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})
   source-sans-pro
   nodePackages.grammarly-languageserver
   ispell
@@ -42,6 +42,7 @@ with pkgs; [
   gtk-engine-murrine
   gtkmm4
   gtkmm3
+  drawio
 
   tldr
   zip

@@ -119,6 +119,7 @@
     unitConfig = {
       Type = "oneshot";
       Before = "nodered.service";
+      After = "sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\\x2deDP\\x2d1-intel_backlight.device";
     };
     serviceConfig = {
       User = "root";

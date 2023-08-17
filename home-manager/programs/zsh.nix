@@ -54,6 +54,7 @@
     '';
 
     sessionVariables = {
+      HISTFILE="${config.xdg.stateHome}/zsh/history";
       NEOVIDE_MULTIGRID = "true";
       AUTO_NOTIFY_IGNORE = import ./auto-notify-ignore.nix;
       EDITOR = "${pkgs.neovim}/bin/nvim";
@@ -182,8 +183,10 @@
         }
 
         function run() {
-          nix-shell -p "$1" --run "$*"
+          nix run "nixpkgs#$1" -- ''${*[@]:2}
         }
+
+        compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
       ''
       + (builtins.readFile ./completions/maestral.zsh);
   };
