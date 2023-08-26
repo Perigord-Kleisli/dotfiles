@@ -50,6 +50,7 @@
 
   programs.hyprland.enable = true;
   services.xserver = {
+    xkbOptions = "caps:escape,shift:lock";
     libinput = {
       enable = true;
       touchpad = {
