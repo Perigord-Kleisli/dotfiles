@@ -9,6 +9,7 @@ with pkgs; [
   blender
   libreoffice
   gnome.nautilus
+  wineWowPackages.stable
 
   (nerdfonts.override {fonts = ["JetBrainsMono"];})
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})
