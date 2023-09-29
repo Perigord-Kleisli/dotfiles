@@ -66,7 +66,7 @@
     enable = true;
     displayManager = {
       defaultSession = "none+xmonad";
-      lightdm = {
+      sddm = {
         enable = true;
       };
     };
@@ -92,6 +92,8 @@
       local all       all     trust
     '';
   };
+
+  services.logind.powerKey = "ignore";
 
   services.gnome = {
     gnome-keyring.enable = true;
@@ -133,6 +135,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   environment.systemPackages = with pkgs; [
     vim
@@ -219,6 +222,11 @@
         }
       ]; # KDE Connect
     };
+  };
+
+  services.printing = {
+    enable = true;
+    drivers = [pkgs.cnijfilter2 pkgs.gutenprint];
   };
 
   # This value determines the NixOS release from which the default

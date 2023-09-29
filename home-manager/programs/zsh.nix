@@ -1,5 +1,5 @@
 {pkgs, config, ...}: {
-  programs.exa.enable = true;
+  programs.eza.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -30,11 +30,11 @@
 
       py = "python";
 
-      ls = "${pkgs.exa}/bin/exa -hF --color=always --icons --sort=size --group-directories-first";
-      la = "${pkgs.exa}/bin/exa -haF --color=always --icons --sort=size --group-directories-first";
-      l = "${pkgs.exa}/bin/exa -lhF --color=always --icons --sort=size --group-directories-first";
-      ll = "${pkgs.exa}/bin/exa -lahF --color=always --icons --sort=size --group-directories-first";
-      lst = "${pkgs.exa}/bin/exa -lahFT --color=always --icons --sort=size --group-directories-first";
+      ls = "${pkgs.eza}/bin/eza -hF --color=always --icons --sort=size --group-directories-first";
+      la = "${pkgs.eza}/bin/eza -haF --color=always --icons --sort=size --group-directories-first";
+      l = "${pkgs.eza}/bin/eza -lhF --color=always --icons --sort=size --group-directories-first";
+      ll = "${pkgs.eza}/bin/eza -lahF --color=always --icons --sort=size --group-directories-first";
+      lst = "${pkgs.eza}/bin/eza -lahFT --color=always --icons --sort=size --group-directories-first";
       mkignore = "forgit::ignore";
 
       cd = "z";

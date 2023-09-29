@@ -8,6 +8,8 @@ with pkgs; [
   gimp
   blender
   libreoffice
+  vscode
+  graphviz
   gnome.nautilus
   wineWowPackages.stable
 
