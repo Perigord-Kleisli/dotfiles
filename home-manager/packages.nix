@@ -12,12 +12,15 @@ with pkgs; [
   graphviz
   gnome.nautilus
   wineWowPackages.stable
+  eza
 
-  (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  (nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka"];})
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})
   source-sans-pro
+  feather
   nodePackages.grammarly-languageserver
   ispell
+  iosevka
   raleway-overlay
   liberation_ttf_v1
   etBook

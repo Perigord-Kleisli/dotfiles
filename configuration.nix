@@ -1,16 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, ... }:
+
 {
-  config,
-  pkgs,
-  ...
-}: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./picom.nix
-  ];
+  imports =
+    [ 
+      ./hardware-configuration.nix
+    ];
+
   hardware.bluetooth.enable = true;
   boot.supportedFilesystems = ["ntfs"];
   # Bootloader.
@@ -37,6 +36,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
+    LANGUAGE = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
     LC_IDENTIFICATION = "fil_PH";
     LC_MONETARY = "fil_PH";
     LC_PAPER = "fil_PH";
@@ -49,7 +50,10 @@
   services.blueman.enable = true;
 
   programs.hyprland.enable = true;
+
+
   services.xserver = {
+    enable = true;
     xkbOptions = "caps:escape,shift:lock";
     libinput = {
       enable = true;
@@ -63,18 +67,17 @@
         accelSpeed = "-0.5";
       };
     };
-    enable = true;
     displayManager = {
       defaultSession = "none+xmonad";
       sddm = {
-        enable = true;
+        enable = false;
       };
     };
-    windowManager = {
-      xmonad = {
-        enable = true;
-      };
-    };
+     windowManager = {
+       xmonad = {
+         enable = true;
+       };
+     };
     desktopManager.plasma5 = {
       enable = true;
     };
@@ -82,18 +85,11 @@
     xkbVariant = "";
   };
 
+
   services.upower.enable = true;
-
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = ["sandboxdb"];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-    '';
-  };
-
-  services.logind.powerKey = "ignore";
+  services.logind.extraConfig = ''
+  HandlePowerKey=ignore
+  '';
 
   services.gnome = {
     gnome-keyring.enable = true;
@@ -109,12 +105,6 @@
     packages = [];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-    vscode = pkgs.vscode;
-  };
 
   systemd.services.brightness = {
     enable = true;
@@ -155,7 +145,6 @@
     };
   };
 
-  # programs.light.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -163,7 +152,6 @@
   };
 
   programs.zsh.enable = true;
-
   programs.dconf.enable = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
@@ -235,5 +223,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 }
+
+

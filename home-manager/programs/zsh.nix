@@ -1,5 +1,4 @@
 {pkgs, config, ...}: {
-  programs.eza.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -15,7 +14,7 @@
     history.expireDuplicatesFirst = true;
 
     enable = true;
-    syntaxHighlighting.enable = true;
+    enableSyntaxHighlighting = true;
 
     enableVteIntegration = true;
     autocd = true;

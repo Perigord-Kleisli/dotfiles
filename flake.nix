@@ -2,9 +2,10 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    eza.url = "github:eza-community/eza";
     devenv.url = "github:cachix/devenv/latest";
   };
 
@@ -12,6 +13,7 @@
     nixpkgs,
     devenv,
     home-manager,
+    eza,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -21,6 +23,7 @@
         (import ./overlays)
         (_: prev: {
           devenv = devenv.packages.${system}.devenv;
+	  eza = eza.packages.${system}.default;
         })
       ];
       config.allowUnfree = true;
