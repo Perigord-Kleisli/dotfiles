@@ -30,6 +30,7 @@ with pkgs; [
   qalculate-gtk
   libqalculate
   libsForQt5.okular
+  spotify
 
   unclutter
   xclip
