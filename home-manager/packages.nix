@@ -8,11 +8,11 @@ with pkgs; [
   gimp
   blender
   libreoffice
-  vscode
   graphviz
   gnome.nautilus
   wineWowPackages.stable
   eza
+  firefox-devedition-bin
 
   (nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka"];})
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})

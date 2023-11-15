@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   username,
   config,
   ...
@@ -10,7 +11,7 @@ in {
     inherit username;
     inherit homeDirectory;
     stateVersion = "23.05";
-    packages = import ./packages.nix {inherit pkgs;};
+    packages = import ./packages.nix {inherit pkgs pkgs-unstable;};
     sessionVariables = with config.xdg; {
       HISTFILE = "${stateHome}/bash/history";
       CABAL_CONFIG = "${configHome}/cabal/config";

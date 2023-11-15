@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  pkgs-unstable,
   ...
 }: {
   imports = [./zsh.nix ./git.nix ./firefox.nix ./kitty.nix ./rofi];
@@ -27,6 +28,18 @@
     yt-dlp.enable = true;
     gh = {
       enable = true;
+    };
+
+    vscode = {
+      enable = true;
+      package = pkgs-unstable.vscode;
+      extensions =  with pkgs-unstable.vscode-extensions; [
+          mikestead.dotenv
+          jnoortheen.nix-ide
+          christian-kohler.path-intellisense
+          ms-dotnettools.csharp
+          oderwat.indent-rainbow
+        ];
     };
   };
 }
