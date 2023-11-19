@@ -12,7 +12,7 @@ with pkgs; [
   gnome.nautilus
   wineWowPackages.stable
   eza
-  firefox-devedition-bin
+  filewatcher
 
   (nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka"];})
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})

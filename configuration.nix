@@ -1,14 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   hardware.bluetooth.enable = true;
   boot.supportedFilesystems = ["ntfs"];
@@ -51,7 +51,6 @@
 
   programs.hyprland.enable = true;
 
-
   services.xserver = {
     enable = true;
     xkbOptions = "caps:escape,shift:lock";
@@ -73,11 +72,11 @@
         enable = false;
       };
     };
-     windowManager = {
-       xmonad = {
-         enable = true;
-       };
-     };
+    windowManager = {
+      xmonad = {
+        enable = true;
+      };
+    };
     desktopManager.plasma5 = {
       enable = true;
     };
@@ -85,10 +84,9 @@
     xkbVariant = "";
   };
 
-
   services.upower.enable = true;
   services.logind.extraConfig = ''
-  HandlePowerKey=ignore
+    HandlePowerKey=ignore
   '';
 
   services.gnome = {
@@ -104,7 +102,6 @@
     shell = pkgs.zsh;
     packages = [];
   };
-
 
   systemd.services.brightness = {
     enable = true;
@@ -173,11 +170,15 @@
 
   hardware.opengl = {
     enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
+      rocm-opencl-icd
+      rocm-opencl-runtime
     ];
   };
 
@@ -225,5 +226,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 }
-
-
