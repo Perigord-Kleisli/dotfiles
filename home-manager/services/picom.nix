@@ -22,8 +22,6 @@
         "class_i = 'taffybar'"
         # "class_g = 'i3lock'"
       ];
-      corner-radius = 12;
-      round-borders = 3;
       shadow = true;
       shadow-radius = 8;
       shadow-opacity = 0.4;
