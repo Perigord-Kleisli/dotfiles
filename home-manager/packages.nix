@@ -8,7 +8,6 @@ with pkgs; [
   gimp
   blender
   libreoffice
-  obsidian
   graphviz
   gnome.nautilus
   wineWowPackages.stable
