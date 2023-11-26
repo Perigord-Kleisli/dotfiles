@@ -19,6 +19,7 @@ with pkgs; [
   source-sans-pro
   feather
   nodePackages.grammarly-languageserver
+  nodePackages.typescript
   ispell
   iosevka
   raleway-overlay
@@ -92,6 +93,7 @@ with pkgs; [
 
   marksman
   nodePackages.cspell
+  nodePackages.vscode-json-languageserver
   nodejs
   gpick
   wordnet
