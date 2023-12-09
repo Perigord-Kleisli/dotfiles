@@ -103,6 +103,10 @@
     packages = [];
   };
 
+  services.locate = {
+    enable = true;
+  };
+
   systemd.services.brightness = {
     enable = true;
     description = "Set brightness writable to everybody";
@@ -196,8 +200,8 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [3000 80 17500];
-      allowedUDPPorts = [17500]; # 175000 for Dropbox
+      allowedTCPPorts = [3000 80 17500 8080];
+      allowedUDPPorts = [17500 8080]; # 175000 for Dropbox
       allowedTCPPortRanges = [
         {
           from = 1714;
