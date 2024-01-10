@@ -113,15 +113,6 @@
         };
       }
       {
-        name = "rust";
-        src = pkgs.fetchFromGitHub {
-          owner = "zpm-zsh";
-          repo = "rust";
-          rev = "d716f934aed0efe6b5afe80f0dde259793e0b446";
-          sha256 = "3Fi8hpFG2SkwxlnNY5J01iCXdRq5YLlGgYJ9o281fwQ=";
-        };
-      }
-      {
         name = "haskell";
         src = pkgs.fetchFromGitHub {
           owner = "coot";

@@ -1,8 +1,20 @@
 {pkgs, ...}:
 with pkgs; [
+  (fenix.complete.withComponents [
+    "cargo"
+    "clippy"
+    "rust-src"
+    "rustc"
+    "rustfmt"
+  ])
+  bacon
+  lldb
+  rust-analyzer-nightly
   bitwarden-cli
   discord
   element-desktop
+  nodePackages_latest.bash-language-server
+  kdenlive
   inkscape
   krita
   gimp

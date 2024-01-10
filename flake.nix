@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     eza.url = "github:eza-community/eza";
     devenv.url = "github:cachix/devenv/latest";
@@ -14,6 +18,7 @@
     nixpkgs,
     nixpkgs-unstable,
     devenv,
+    fenix,
     home-manager,
     eza,
     ...
@@ -26,6 +31,7 @@
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
+        fenix.overlays.default
         (import ./overlays)
         (_: prev: {
           devenv = devenv.packages.${system}.devenv;

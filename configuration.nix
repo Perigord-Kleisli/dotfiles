@@ -2,8 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
+  options,
   ...
 }: {
   imports = [
@@ -19,6 +19,7 @@
   };
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.timeServers = ["ntp.ubuntu.com"] ++ options.networking.timeServers.default ;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -87,6 +88,7 @@
   services.upower.enable = true;
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
+    HandleLidSwitch=suspend-then-hibernate
   '';
 
   services.gnome = {
