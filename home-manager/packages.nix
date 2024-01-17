@@ -7,6 +7,7 @@ with pkgs; [
     "rustc"
     "rustfmt"
   ])
+  cargo-flamegraph
   bacon
   lldb
   rust-analyzer-nightly

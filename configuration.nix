@@ -19,11 +19,45 @@
   };
 
   networking.hostName = "nixos"; # Define your hostname.
-  networking.timeServers = ["ntp.ubuntu.com"] ++ options.networking.timeServers.default ;
+  networking.timeServers = ["ntp.ubuntu.com"] ++ options.networking.timeServers.default;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  powerManagement.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 50;
+
+      #Optional helps save long term battery health
+      # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+      # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+    };
+  };
 
   virtualisation.docker.enable = true;
 
@@ -88,8 +122,8 @@
   services.upower.enable = true;
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
-    HandleLidSwitch=suspend-then-hibernate
   '';
+  services.logind.lidSwitch = "suspend-then-hibernate";
 
   services.gnome = {
     gnome-keyring.enable = true;
