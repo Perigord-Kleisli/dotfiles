@@ -9,7 +9,11 @@ with pkgs; [
   ])
   cargo-flamegraph
   bacon
+  calibre
+  hakuneko
+  p7zip
   lldb
+  cuphead
   rust-analyzer-nightly
   bitwarden-cli
   discord
@@ -28,7 +32,7 @@ with pkgs; [
   filewatcher
 
   (nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka"];})
-  (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue"];})
+  (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue" "Anton"];})
   source-sans-pro
   feather
   nodePackages.grammarly-languageserver

@@ -2,6 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
+    cuphead.url = "gitlab:matthewcroughan/darkflake";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
@@ -21,6 +22,7 @@
     fenix,
     home-manager,
     eza,
+    cuphead,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -34,6 +36,7 @@
         fenix.overlays.default
         (import ./overlays)
         (_: prev: {
+          cuphead = cuphead.packages.${system}.cuphead;
           devenv = devenv.packages.${system}.devenv;
           eza = eza.packages.${system}.default;
         })
