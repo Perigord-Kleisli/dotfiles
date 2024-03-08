@@ -35,6 +35,8 @@ with pkgs; [
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue" "Anton"];})
   source-sans-pro
   feather
+  minecraft
+  prismlauncher
   nodePackages.grammarly-languageserver
   nodePackages.typescript
   ispell
