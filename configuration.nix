@@ -27,17 +27,17 @@
 
   powerManagement.enable = true;
   services.power-profiles-daemon.enable = false;
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
-  };
+  # services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.settings = {
+  #   battery = {
+  #     governor = "powersave";
+  #     turbo = "never";
+  #   };
+  #   charger = {
+  #     governor = "performance";
+  #     turbo = "auto";
+  #   };
+  # };
 
   services.tlp = {
     enable = true;
@@ -48,14 +48,14 @@
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MIN_PERF_ON_AC = 80;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
+      CPU_MAX_PERF_ON_BAT = 100;
 
       #Optional helps save long term battery health
-      # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
     };
   };
 
@@ -231,12 +231,18 @@
     jack.enable = true;
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
   # Open ports in the firewall.
 
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [3000 80 17500 8080];
+      allowedTCPPorts = [3000 80 17500 8080 9100];
       allowedUDPPorts = [17500 8080]; # 175000 for Dropbox
       allowedTCPPortRanges = [
         {
