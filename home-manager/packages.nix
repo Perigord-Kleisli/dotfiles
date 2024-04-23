@@ -15,8 +15,8 @@ with pkgs; [
   lldb
   cuphead
   rust-analyzer-nightly
-  bitwarden-cli
-  discord
+  # bitwarden-cli
+  # discord
   element-desktop
   nodePackages_latest.bash-language-server
   kdenlive
@@ -26,7 +26,7 @@ with pkgs; [
   blender
   libreoffice
   graphviz
-  gnome.nautilus
+  # gnome.nautilus
   wineWowPackages.stable
   eza
   filewatcher
@@ -35,7 +35,7 @@ with pkgs; [
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue" "Anton"];})
   source-sans-pro
   feather
-  minecraft
+  # minecraft
   prismlauncher
   nodePackages.grammarly-languageserver
   nodePackages.typescript

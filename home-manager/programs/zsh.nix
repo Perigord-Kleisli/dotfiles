@@ -14,7 +14,7 @@
     history.expireDuplicatesFirst = true;
 
     enable = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
 
     enableVteIntegration = true;
     autocd = true;
