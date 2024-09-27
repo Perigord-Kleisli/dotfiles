@@ -5,6 +5,13 @@
 }: {
   xdg = {
     enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
+      };
+    };
     desktopEntries = {
       "PureRef" = {
         type = "Application";
@@ -13,8 +20,8 @@
         icon = ./data/PureRef.png;
         exec = let
           pureRef = pkgs.requireFile {
-            name = "PureRef-1.11.1_x64.Appimage";
-            sha256 = "75afdd1f4aee239eb6272969bc4f5fdb3314489e7af93ed8d3194fff1af7ca16";
+            name = "PureRef-2.0.3_x64.Appimage";
+            sha256 = "1wrm81l5gg6b4gjsl74q2hhfdxigp85064dcm2bgarmczmq7a96j";
             url = "https://www.pureref.com/download.php";
           };
         in "${pkgs.appimage-run}/bin/appimage-run ${pureRef}";
@@ -24,7 +31,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
   gtk = {

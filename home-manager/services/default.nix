@@ -44,25 +44,6 @@
     };
   };
 
-  systemd.user.services.maestral-daemon = {
-    Unit = {
-      Description = "Maestral daemon for the config %i";
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.python310Packages.maestral}/bin/maestral start -f -c %i";
-      WatchdogSec = 30;
-      ExecStop = "${pkgs.python310Packages.maestral}/bin/maestral stop -c %i";
-      ExecStopPost = ''
-        ${pkgs.bash}/bin/bash -c "if [ $${SERVICE_RESULT} != success ]; then notify-send Maestral 'Daemon failed: $${SERVICE_RESULT}'; fi"
-      '';
-      Environment = "PYTHONOPTIMIZE=2 LC_CTYPE=UTF-8";
-    };
-    Install = {
-      WantedBy = ["default.target"];
-    };
-  };
-
   systemd.user.services.status-notifier-watcher = {
     Unit = {
       Description = "SNI watcher";

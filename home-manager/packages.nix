@@ -10,13 +10,12 @@ with pkgs; [
   cargo-flamegraph
   bacon
   calibre
-  hakuneko
   p7zip
   lldb
-  cuphead
+  # cuphead
   rust-analyzer-nightly
   # bitwarden-cli
-  # discord
+  discord
   element-desktop
   nodePackages_latest.bash-language-server
   kdenlive
@@ -30,6 +29,9 @@ with pkgs; [
   wineWowPackages.stable
   eza
   filewatcher
+  ffmpeg
+  ncdu
+  handbrake
 
   (nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka"];})
   (google-fonts.override {fonts = ["Space Grotesk" "Roboto" "Bebas Neue" "Anton"];})
@@ -37,7 +39,6 @@ with pkgs; [
   feather
   # minecraft
   prismlauncher
-  nodePackages.grammarly-languageserver
   nodePackages.typescript
   ispell
   iosevka
@@ -69,7 +70,6 @@ with pkgs; [
   gtk-engine-murrine
   gtkmm4
   gtkmm3
-  drawio
 
   tldr
   zip
@@ -87,9 +87,8 @@ with pkgs; [
   gcc
   beautysh
   steam-run
-  neovide
-  maestral
-  maestral-gui
+  # maestral
+  # maestral-gui
 
   antibody
   acpi
@@ -105,7 +104,7 @@ with pkgs; [
   nix-prefetch-github
   statix
   alejandra
-  nixfmt
+  nixfmt-classic
   nil
   deadnix
   devenv

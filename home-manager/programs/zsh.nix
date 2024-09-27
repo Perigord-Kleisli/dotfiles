@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -33,18 +37,21 @@
       la = "${pkgs.eza}/bin/eza -haF --color=always --icons --sort=size --group-directories-first";
       l = "${pkgs.eza}/bin/eza -lhF --color=always --icons --sort=size --group-directories-first";
       ll = "${pkgs.eza}/bin/eza -lahF --color=always --icons --sort=size --group-directories-first";
-      lst = "${pkgs.eza}/bin/eza -lahFT --color=always --icons --sort=size --group-directories-first";
+      lst = "${pkgs.eza}/bin/eza -lahTF --color=always --icons --sort=size --group-directories-first";
       mkignore = "forgit::ignore";
 
       cd = "z";
-      ccp = "xclip -sel clip";
+      clipCopy = "xclip -sel clip";
+      clipPaste = "xclip -sel clip -o";
       cat = "${pkgs.bat}/bin/bat";
       rm = "${pkgs.trash-cli}/bin/trash";
       open = "xdg-open";
       icat = "kitty +kitten icat";
     };
 
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
     enableCompletion = true;
     completionInit = ''
       autoload -U +X compinit && compinit
@@ -53,7 +60,7 @@
     '';
 
     sessionVariables = {
-      HISTFILE="${config.xdg.stateHome}/zsh/history";
+      HISTFILE = "${config.xdg.stateHome}/zsh/history";
       NEOVIDE_MULTIGRID = "true";
       AUTO_NOTIFY_IGNORE = import ./auto-notify-ignore.nix;
       EDITOR = "${pkgs.neovim}/bin/nvim";
@@ -123,61 +130,63 @@
       }
     ];
 
-    initExtra =
-      ''
-        export XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
+    initExtra = ''
+      export XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
 
-        autoload -U history-search-end
-        zle -N history-beginning-search-backward-end history-search-end
-        zle -N history-beginning-search-forward-end history-search-end
+      autoload -U history-search-end
+      zle -N history-beginning-search-backward-end history-search-end
+      zle -N history-beginning-search-forward-end history-search-end
 
-        bindkey -e
-        bindkey ";5D" backward-word
-        bindkey ";5C" forward-word
-        bindkey \^u backward-kill-line
-        bindkey "^[[A" history-beginning-search-backward-end
-        bindkey "^[[B" history-beginning-search-forward-end
-        bindkey \^h backward-word
-        bindkey \^l forward-word
-        bindkey \^j history-search-forward
-        bindkey \^k history-search-backward
+      bindkey -e
+      bindkey ";5D" backward-word
+      bindkey ";5C" forward-word
+      bindkey \^u backward-kill-line
+      bindkey "^[[A" history-beginning-search-backward-end
+      bindkey "^[[B" history-beginning-search-forward-end
+      bindkey \^h backward-word
+      bindkey \^l forward-word
+      bindkey \^j history-search-forward
+      bindkey \^k history-search-backward
 
-        WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
-        export PATH=$PATH:$HOME/.local/bin/:${config.xdg.configHome}/emacs/bin
-        eval "$(zoxide init zsh)"
+      WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+      export PATH=$PATH:$HOME/.local/bin/:${config.xdg.configHome}/emacs/bin
+      eval "$(zoxide init zsh)"
 
-        function plot {
-        cat <<HEREDOC | gnuplot
-            set terminal pngcairo enhanced font 'Fira Sans,10'
-            set autoscale
-            set samples 1000
-            set output '|kitty +kitten icat --stdin yes'
-            set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb"#fdf6e3" behind
-            plot $@
-            set output '/dev/null'
-        HEREDOC
-        }
+      function plot {
+      cat <<HEREDOC | gnuplot
+          set terminal pngcairo enhanced font 'Fira Sans,10'
+          set autoscale
+          set samples 1000
+          set output '|kitty +kitten icat --stdin yes'
+          set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb"#fdf6e3" behind
+          plot $@
+          set output '/dev/null'
+      HEREDOC
+      }
 
-        function swap_esc() {
-                  cat <<HEREDOC | xmodmap -
-                      clear lock
-                      keycode 9 = Caps_Lock
-                      keycode 66 = Escape
-        HEREDOC
-        }
-        function unswap_esc() {
-                  cat <<HEREDOC | xmodmap -
-                      keycode 66 = Caps_Lock
-                      keycode 9 = Escape
-        HEREDOC
-        }
+      function swap_esc() {
+                cat <<HEREDOC | xmodmap -
+                    clear lock
+                    keycode 9 = Caps_Lock
+                    keycode 66 = Escape
+      HEREDOC
+      }
+      function unswap_esc() {
+                cat <<HEREDOC | xmodmap -
+                    keycode 66 = Caps_Lock
+                    keycode 9 = Escape
+      HEREDOC
+      }
 
-        function run() {
-          nix run "nixpkgs#$1" -- ''${*[@]:2}
-        }
+      function copyTxt() {
+        echo -n "$1" | xclip -sel clip
+      }
 
-        compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-      ''
-      + (builtins.readFile ./completions/maestral.zsh);
+      function run() {
+        nix run "nixpkgs#$1" -- ''${*[@]:2}
+      }
+
+      compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+    '';
   };
 }

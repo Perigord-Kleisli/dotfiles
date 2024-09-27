@@ -3,9 +3,9 @@
 
   inputs = {
     cuphead.url = "gitlab:matthewcroughan/darkflake";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +38,7 @@
         (_: prev: {
           cuphead = cuphead.packages.${system}.cuphead;
           devenv = devenv.packages.${system}.devenv;
+          opentabletdriver = pkgs-unstable.opentabletdriver;
           eza = eza.packages.${system}.default;
         })
       ];

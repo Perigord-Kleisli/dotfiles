@@ -86,26 +86,31 @@
 
   programs.hyprland.enable = true;
 
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      middleEmulation = true;
+    };
+    mouse = {
+      middleEmulation = false;
+      accelProfile = "flat";
+      accelSpeed = "-0.5";
+    };
+  };
+
+  services.displayManager = {
+    defaultSession = "none+xmonad";
+    sddm = {
+      enable = true;
+    };
+  };
+
   services.xserver = {
     enable = true;
-    xkbOptions = "caps:escape,shift:lock";
-    libinput = {
-      enable = true;
-      touchpad = {
-        naturalScrolling = true;
-        middleEmulation = true;
-      };
-      mouse = {
-        middleEmulation = false;
-        accelProfile = "flat";
-        accelSpeed = "-0.5";
-      };
-    };
-    displayManager = {
-      defaultSession = "none+xmonad";
-      sddm = {
-        enable = false;
-      };
+    xkb = {
+      options = "caps:escape_shifted_capslock";
+      layout = "us";
     };
     windowManager = {
       xmonad = {
@@ -115,8 +120,6 @@
     desktopManager.plasma5 = {
       enable = true;
     };
-    layout = "us";
-    xkbVariant = "";
   };
 
   services.upower.enable = true;
@@ -182,6 +185,13 @@
     };
   };
 
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" #ublock
+    ];
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -198,7 +208,9 @@
 
   # List services that you want to enable:
 
-  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver = {
+    enable = true;
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -233,7 +245,7 @@
 
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 
@@ -257,6 +269,10 @@
         }
       ]; # KDE Connect
     };
+  };
+
+  services.resolved = {
+    enable = true;
   };
 
   services.printing = {
