@@ -5,4 +5,5 @@ self: super:
   feather = super.callPackage ./Feather.nix {};
   filewatcher = super.callPackage ./filewatcher.nix {};
   glsl_analyzer = super.callPackage ./glsl_analyzer.nix {};
+  codeium = super.callPackage ./codeium.nix {};
 }

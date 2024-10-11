@@ -10,9 +10,27 @@
       defaultApplications = {
         "text/html" = "firefox.desktop";
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
+        "x-scheme-handler/http"="firefox.desktop";
+        "x-scheme-handler/https"="firefox.desktop";
+        "x-scheme-handler/chrome"="firefox.desktop";
+        "application/x-extension-htm"="firefox.desktop";
+        "application/x-extension-html"="firefox.desktop";
+        "application/x-extension-shtml"="firefox.desktop";
+        "application/xhtml+xml"="firefox.desktop";
+        "application/x-extension-xhtml"="firefox.desktop";
+        "application/x-extension-xht"="firefox.desktop";
       };
     };
     desktopEntries = {
+      "Doom Emacs" = {
+        type = "Application";
+        terminal = false;
+        name = "Doom Emacs";
+        icon = "emacs";
+        mimeType= ["text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"];
+        exec="${config.xdg.configHome}/emacs/bin/doom run";
+        categories = ["Development" "TextEditor"];
+      };
       "PureRef" = {
         type = "Application";
         terminal = false;
@@ -60,7 +78,8 @@
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
       extraConfig = ''
-        gtk-enable-animation = 1;
+        gtk-application-prefer-dark-theme = 1
+        gtk-enable-animation = 1
       '';
     };
 

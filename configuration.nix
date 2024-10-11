@@ -79,12 +79,25 @@
     LC_TELEPHONE = "fil_PH";
   };
 
-  # Configure keymap in X11
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-gtk 
+      pkgs.xdg-desktop-portal
+    ];
+  };
   services.flatpak.enable = true;
   services.blueman.enable = true;
 
+  programs.nm-applet = {
+    enable = true;
+    indicator = true;
+  };
   programs.hyprland.enable = true;
+
+  programs.waybar = {
+    enable = true;
+  };
 
   services.libinput = {
     enable = true;
@@ -100,10 +113,11 @@
   };
 
   services.displayManager = {
-    defaultSession = "none+xmonad";
-    sddm = {
-      enable = true;
-    };
+    defaultSession = "hyprland";
+  };
+
+  services.desktopManager.plasma6 = {
+    enable = true;
   };
 
   services.xserver = {
@@ -111,14 +125,6 @@
     xkb = {
       options = "caps:escape_shifted_capslock";
       layout = "us";
-    };
-    windowManager = {
-      xmonad = {
-        enable = true;
-      };
-    };
-    desktopManager.plasma5 = {
-      enable = true;
     };
   };
 
@@ -142,25 +148,16 @@
     packages = [];
   };
 
-  services.locate = {
-    enable = true;
+  users.users.tester = {
+    isNormalUser = true;
+    description = "Home";
+    extraGroups = ["networkmanager" "video" "docker" "wheel" "libvirtd"];
+    shell = pkgs.zsh;
+    packages = [];
   };
 
-  systemd.services.brightness = {
+  services.locate = {
     enable = true;
-    description = "Set brightness writable to everybody";
-    unitConfig = {
-      Type = "oneshot";
-      Before = "nodered.service";
-      After = "sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\\x2deDP\\x2d1-intel_backlight.device";
-    };
-    serviceConfig = {
-      User = "root";
-      ExecStart = ''
-        /bin/sh -c "chgrp -R -H video /sys/class/backlight/intel_backlight && chmod g+w /sys/class/backlight/intel_backlight/brightness"
-      '';
-    };
-    wantedBy = ["multi-user.target"];
   };
 
   # List packages installed in system profile. To search, run:
@@ -183,13 +180,6 @@
       trusted-public-keys = ["hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="];
       substituters = ["https://cache.iog.io"];
     };
-  };
-
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" #ublock
-    ];
   };
 
   programs.steam = {
@@ -235,8 +225,12 @@
   };
 
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
+    wireplumber = {
+      enable = true;
+    };
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
@@ -254,7 +248,8 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [3000 80 17500 8080 9100];
+      allowedTCPPorts = [3000 80 17500 8080 9100 50001];
+      # 50001: codeium
       allowedUDPPorts = [17500 8080]; # 175000 for Dropbox
       allowedTCPPortRanges = [
         {

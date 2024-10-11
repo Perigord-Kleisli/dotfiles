@@ -1,11 +1,14 @@
+let
+  nixosVersion = "24.05";
+in 
 {
   description = "NixOS configuration";
 
   inputs = {
     cuphead.url = "gitlab:matthewcroughan/darkflake";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-${nixosVersion}";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-${nixosVersion}";
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

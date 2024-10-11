@@ -17,8 +17,6 @@
     blueman-applet.enable = true;
     mpris-proxy.enable = true;
 
-    flameshot.enable = true;
-
     emacs = {
       client.enable = true;
       startWithUserSession = true;

@@ -6,7 +6,7 @@
   ...
 }: {
   services.picom = {
-    enable = true;
+    enable = false;
     settings = {
       # animations = true;
       # animation-stiffness = 300.0;

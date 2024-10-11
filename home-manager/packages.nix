@@ -12,8 +12,16 @@ with pkgs; [
   calibre
   p7zip
   lldb
+  brave
+  codeium
+  hyprshot
+  hyprpaper
   # cuphead
   rust-analyzer-nightly
+  lua51Packages.luarocks-nix
+  brightnessctl
+  playerctl
+  lua51Packages.lua
   # bitwarden-cli
   discord
   element-desktop
@@ -52,6 +60,7 @@ with pkgs; [
   libqalculate
   libsForQt5.okular
   spotify
+  pavucontrol
 
   unclutter
   xclip
@@ -122,6 +131,8 @@ with pkgs; [
   killall
   feh
   dunst
+
+  python312Packages.pygments
 
   usbutils
 ]
